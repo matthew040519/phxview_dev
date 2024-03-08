@@ -38,12 +38,16 @@ class LoginController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            return response()->json([
-                'status' => true,
-                'data' => $user,
-                'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+            $request->session()->regenerate();
+
+            return $user->role == '1' ? redirect()->intended('dashboard') : redirect()->intended('secretary-dashboard');
+
+            // return response()->json([
+            //     'status' => true,
+            //     'data' => $user,
+            //     'message' => 'User Logged In Successfully',
+            //     'token' => $user->createToken("API TOKEN")->plainTextToken
+            // ], 200);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -51,5 +55,21 @@ class LoginController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+     
+        session()->invalidate();
+     
+        session()->regenerateToken();
+
+        // return response()->json([
+        //     'status' => true,
+        //     'message' => 'User Logged Out Successfully',
+        // ], 200);
+     
+        return redirect('/');
     }
 }

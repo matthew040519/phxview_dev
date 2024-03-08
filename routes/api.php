@@ -16,4 +16,4 @@ use App\Http\Controllers\LoginController;
 */
 
 // Route::middleware('auth:sanctum')->post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+

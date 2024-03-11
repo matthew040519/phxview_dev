@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\member;
+use App\Models\tree;
+use App\Models\Province;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
 
 class LoginController extends Controller
 {
@@ -71,5 +77,97 @@ class LoginController extends Controller
         // ], 200);
      
         return redirect('/');
+    }
+
+    public function register()
+    {
+        $params = [];
+        $params['province'] = Province::orderBy('name','asc')->get();
+
+        return view('register')->with('params', $params);
+    }
+
+    public function addmember(Request $request)
+    {
+        $validated = $request->validate([
+            'username' => 'required|unique:members|unique:users,name|max:255',
+            'password' => 'required',
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'birthday' => 'required',
+            'gender' => 'required',
+            'email' => 'required|unique:members|unique:users',
+            'contact_number' => 'required',
+            'province_id' => 'required',
+            'city_id' => 'required',
+            // 'brgy_id' => 'required',
+            'sponsor' => 'required|exists:members,username',
+            'upline' => ['required', 'exists:members,username',
+                Rule::exists('trees')->where(function (Builder $query) {
+                    return $query->where('complete', 0);
+                }),
+            ],
+        ]);
+
+
+        $code = Str::random(8);
+
+        member::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'birthday' => $request->birthday,
+            'gender' => $request->gender,
+            'email' => $request->email,
+            'contact_number' => $request->contact_number,
+            'province_code' => $request->province_id,
+            'city_code' => $request->city_id,
+            'brgy_code' => $request->brgy_id,
+            'member_code' => $code,
+            'sponsor' => $request->sponsor,
+            'upline' => $request->upline,
+        ]);
+
+        user::create([
+            'name' => $request->username,
+            'email' => $request->email,
+            'role' => 0,
+            'password' => Hash::make($request->password)
+        ]);
+
+        tree::create([
+            'upline' => $request->username,
+        ]);
+
+        $position = "";
+
+        $upline = tree::where('upline', $request->upline)->first();
+        if($upline->first == "")
+        {
+            $position = "first";
+        }
+        else if($upline->second == ""){
+            $position = "second";
+        }
+        else if($upline->third == ""){
+            $position = "third";
+        }
+        else if($upline->fourth == ""){
+            $position = "fourth";
+        }
+
+        tree::where('upline', $request->upline)->update([$position => $request->username]);
+        member::where('username', $request->username)->update(['position' => $position]);
+        $updated_upline = tree::where('upline', $request->upline)->first();
+        if($updated_upline->first != "" && $updated_upline->second != "" && $updated_upline->third != "" && $updated_upline->fourth != "")
+        {
+            tree::where('upline', $request->upline)->update(['complete' => 1]);
+        }
+        
+        return redirect()->back()->with('status', 'Member Add Successfully');
+
     }
 }

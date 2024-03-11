@@ -21,7 +21,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="index.php" class="h1"><b>PHX</b>Click</a>
+      <a href="/" class="h1"><b>PHX</b>Click</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
@@ -61,7 +61,7 @@
         </div>
       </form>
       <p class="mb-0">
-        <a href="register.php" class="text-center">Register a new membership</a>
+        <a href="/register" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->

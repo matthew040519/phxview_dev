@@ -49,7 +49,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="task.php" class="nav-link">
+                    <a href="/task" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Task Management</p>
                     </a>
@@ -61,6 +61,15 @@
                     </a>
                   </li>
                 </ul>
+              </li>
+              <li class="nav-item">
+                <a href="/package" class="nav-link">
+                  <i class="nav-icon fas fa-credit-card"></i>
+                  <p>
+                    Package
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
               </li>
               <li class="nav-item">
                 <a href="payout.php" class="nav-link">

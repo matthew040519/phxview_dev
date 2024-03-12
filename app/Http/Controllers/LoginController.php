@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\member;
 use App\Models\tree;
+use App\Models\directinvite;
+use App\Models\member_package;
 use App\Models\Province;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -23,9 +25,18 @@ class LoginController extends Controller
         try {
             $validateUser = Validator::make($request->all(), 
             [
-                'email' => 'required|email',
-                'password' => 'required'
+                'email' => 'required',
+                'password' => 'required',
+                'user_code' => 'required'
             ]);
+
+            $user_code = $request->user_code;
+            $com_code = $request->code;
+
+            if($user_code != $com_code)
+            {
+                return redirect()->back()->with('status', 'Code Not Match!');
+            }
 
             if($validateUser->fails()){
                 return response()->json([
@@ -46,7 +57,16 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return $user->role == '1' ? redirect()->intended('dashboard') : redirect()->intended('secretary-dashboard');
+            if($user->role == 1)
+            {
+                return redirect()->intended('admin/dashboard');
+            } 
+            else if($user->role == 0)
+            {
+                return redirect()->intended('member/memberdashboard');
+            }
+
+            
 
             // return response()->json([
             //     'status' => true,
@@ -132,8 +152,8 @@ class LoginController extends Controller
         ]);
 
         user::create([
-            'name' => $request->username,
-            'email' => $request->email,
+            'name' => $request->first_name.' '.$request->last_name,
+            'email' => $request->username,
             'role' => 0,
             'password' => Hash::make($request->password)
         ]);
@@ -141,6 +161,8 @@ class LoginController extends Controller
         tree::create([
             'upline' => $request->username,
         ]);
+
+        
 
         $position = "";
 

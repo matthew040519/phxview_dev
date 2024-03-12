@@ -61,9 +61,8 @@
                         <thead>
                         <tr>
                           <th>Task Name</th>
-                          <th>Task Created</th>
+                          {{-- <th>Task Created</th> --}}
                           <th>Client</th>
-                          <th>Task Rate</th>
                           <th>Created By</th>
                         </tr>
                         </thead>
@@ -71,9 +70,8 @@
                           @foreach ($params['task'] as $task)
                               <tr>
                                 <td>{{ $task->task_name }}</td>
-                                <td>{{ $task->date_created }}</td>
+                                {{-- <td>{{ $task->date_created }}</td> --}}
                                 <td>{{ $task->client->client_name }}</td>
-                                <td>{{ $task->task_rate }}</td>
                                 <td>{{ $task->user->name }}</td>
                               </tr>
                           @endforeach
@@ -104,35 +102,38 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="{{ route('addtask') }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <label for="">Task Name</label>
-                    <input type="text" name="task_name" class="form-control">
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="">Video Task</label>
-                    <input type="file" name="url" class="form-control">
-                </div>
-                <div class="col-md-12  mb-3">
-                    <label for="">Client</label>
-                    <select name="client_id" class="form-control" id="">
-                      @foreach ($params['client'] as $client)
-                          <option value="{{ $client->id }}">{{ $client->client_name }}</option>
-                      @endforeach
-                    </select>
-                </div>
-                <div class="col-md-12  mb-3">
-                    <label for="">Task Date</label>
-                    <input type="date" name="date_created" class="form-control">
-                </div>
-                <div class="col-md-12 mb-3" style="display: none;">
-                    <label for="">PHXCoin Rate</label>
-                    <input type="number" value="0" name="task_rate" class="form-control">
-                </div>
-            </div>
-          
+          <div class="container">
+            <form method="POST" action="{{ route('addtask') }}" enctype="multipart/form-data">
+              {{ csrf_field() }}
+              <div class="row">
+                  <div class="col-md-12 mb-3">
+                      <label for="">Task Name</label>
+                      <input type="text" name="task_name" class="form-control">
+                  </div>
+                  <div class="col-md-12 mb-3">
+                      <label for="">Video Task</label>
+                      <input type="file" name="url" class="form-control">
+                  </div>
+                  <div class="col-md-12  mb-3">
+                      <label for="">Client</label>
+                      <select name="client_id" class="form-control" id="">
+                        @foreach ($params['client'] as $client)
+                            <option value="{{ $client->id }}">{{ $client->client_name }}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                  <div class="col-md-12  mb-3" style="display: none;">
+                      <label for="">Task Date</label>
+                      <input type="date" name="date_created" class="form-control">
+                  </div>
+                  <div class="col-md-12 mb-3" style="display: none;">
+                      <label for="">PHXCoin Rate</label>
+                      <input type="number" value="0" name="task_rate" class="form-control">
+                  </div>
+              </div>
+            
+         
+          </div>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

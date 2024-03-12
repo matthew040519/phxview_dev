@@ -10,5 +10,10 @@ class package extends Model
     use HasFactory;
 
     protected $table = 'packages';
-    protected $fillable = ['package_name', 'dc_token', 'click', 'dr'];
+    protected $fillable = ['package_name', 'dc_token', 'click', 'dr', 'color'];
+
+    public function member_package()
+    {
+        return $this->hasMany(member_package::class, 'package_id', 'id');
+    }
 }

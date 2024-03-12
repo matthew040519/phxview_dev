@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: linear-gradient(#04619F, #000000)">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">

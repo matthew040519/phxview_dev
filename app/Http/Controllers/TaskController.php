@@ -26,7 +26,6 @@ class TaskController extends Controller
         $validated = $request->validate([
             'task_name' => 'required|max:255',
             'client_id' => 'required',
-            'date_created' => 'required',
             'task_rate' => 'required',
         ]);
 
@@ -37,7 +36,7 @@ class TaskController extends Controller
             'client_id' => $request->client_id,
             'url' => $file->getClientOriginalName(),
             'user_id' => Auth::user()->id,
-            'date_created' => $request->date_created,
+            // 'date_created' => $request->date_created,
             'task_rate' => number_format($request->task_rate, 2)
         ]);
 

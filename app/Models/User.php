@@ -48,4 +48,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(client::class);
     }
+
+    public function member()
+    {
+        return $this->hasOne(member::class, 'username', 'email');
+    }
+
+    public function member_package()
+    {
+        return $this->hasMany(member_package::class, 'username', 'email');
+    }
 }

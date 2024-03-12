@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CitiesmunicipalitiesController;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,9 @@ use App\Http\Controllers\CitiesmunicipalitiesController;
 */
 
 Route::get('/', function () {
-    return view('login');
+
+    $code = Str::random(5);
+    return view('login')->with('code', $code);
 })->name('login');
 
 Route::post('/login-user', [LoginController::class, 'login'])->name('login-user');
@@ -33,14 +36,24 @@ Route::get('/brgy',[DashboardController::class, 'province']);
 Route::middleware(['auth', 'auth.session'])->group(function () {
 
     Route::middleware(['restrictRole:1'])->group(function() {
-        Route::get('/dashboard',[DashboardController::class, 'index']);
-        
-        Route::get('/client',[ClientController::class, 'index']);
-        Route::post('/add-client',[ClientController::class, 'addclient'])->name('addclient');
-        Route::get('/task',[TaskController::class, 'index']);
-        Route::post('/add-task',[TaskController::class, 'addtask'])->name('addtask');
-        Route::get('/package',[PackageController::class, 'index']);
-        Route::post('/add-package',[PackageController::class, 'addpackage'])->name('addpackage');
+        Route::prefix('admin')->group(function () {
+            Route::get('/dashboard',[DashboardController::class, 'index']);
+            Route::get('/client',[ClientController::class, 'index']);
+            Route::post('/add-client',[ClientController::class, 'addclient'])->name('addclient');
+            Route::get('/task',[TaskController::class, 'index']);
+            Route::post('/add-task',[TaskController::class, 'addtask'])->name('addtask');
+            Route::get('/package',[PackageController::class, 'index']);
+            Route::post('/add-package',[PackageController::class, 'addpackage'])->name('addpackage');
+        });
+    });
+
+    Route::middleware(['restrictRole:0'])->group(function() {
+        Route::prefix('member')->group(function () {
+            Route::get('/memberdashboard',[DashboardController::class, 'memberdashboard']);
+            Route::get('/getTask',[DashboardController::class, 'getTaskData']);
+            Route::get('/packages',[PackageController::class, 'package']);
+            Route::get('/addpackage',[PackageController::class, 'memberpackage']);
+        });
     });
 
 });

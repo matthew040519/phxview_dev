@@ -51,6 +51,9 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
         Route::prefix('member')->group(function () {
             Route::get('/memberdashboard',[DashboardController::class, 'memberdashboard']);
             Route::get('/getTask',[DashboardController::class, 'getTaskData']);
+            Route::get('/insertTask',[DashboardController::class, 'insertMemberTask']);
+            Route::get('/memberIncome',[DashboardController::class, 'memberIncome']);
+            Route::get('/rewardsWallet',[DashboardController::class, 'RewardsWallet']);
             Route::get('/packages',[PackageController::class, 'package']);
             Route::get('/addpackage',[PackageController::class, 'memberpackage']);
         });

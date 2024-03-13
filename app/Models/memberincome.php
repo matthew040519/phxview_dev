@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class membertask extends Model
+class memberincome extends Model
 {
     use HasFactory;
 
-    protected $table = 'membertasks';
-    protected $fillable = ['member_id', 'batch', 'task_id', 'tdate', 'count'];
+    protected $table = 'memberincomes';
+    protected $fillable = ['member_id', 'batch', 'tdate', 'income'];
 }

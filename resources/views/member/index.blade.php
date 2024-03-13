@@ -96,7 +96,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>0.00</h3>
+                <h3 id="rewardsWallet"></h3>
                 <p>Rewards Wallet</p>
               </div>
               <div class="icon">
@@ -163,36 +163,6 @@
   <script>
     $(document).ready(function(){
 
-      function nextVideo()
-      {
-        var x = document.getElementById("myVideo");
-
-        
-        if(x != null)
-        {
-          x.play()
-            // getVideo();
-            // checkIfEnded()
-            // checkIfEnded()
-
-        }
-        else{
-            getVideo();
-        }
-      } 
-
-      function checkIfEnded()
-      {
-        var ended = document.getElementById("myVideo").ended;
-            
-            if(ended)
-            {
-              getVideo();
-            }else{
-              console.log(document.getElementById("myVideo").duration)
-              
-            }
-      }
       getVideo();
 
         function getVideo()
@@ -215,21 +185,94 @@
                                       option += " <source src='../videos/"+ response.task.url +"' type='video/mp4'></source>"
                                       option += "</video>" 
                                       option += "</div>"  
+                                      option += "<div class='card-body'>"
+                                      option += "<button class='btn btn-primary' id='claim' style='display: none'>Claim</button>"
+                                      option += "</div>"  
 
 
                                       $("#task").append(option);  
                                       
                                       // nextVideo();
                                       var x = document.getElementById("myVideo");
-                                      x.muted = true
-                                      x.play()
+                                      
                                       // x.muted = false
-                                      console.log(x.duration)
+                                      console.log(x.onended)
+
+                                      x.onended = function() {
+
+                                        $.ajax({
+                                              url: '/member/insertTask?id=' + response.task.id,
+                                              type: 'get',
+                                              dataType: 'json',
+                                              success: function(response){
+                                                // $('#task').empty();
+                                                console.log(response);
+                                                var len = 0;
+                                                if(response.success){
+                                                  if(response.count == 3)
+                                                  {
+                                                    var claim = document.getElementById('claim');
+                                                    claim.style.removeProperty("display");
+                                                    claimIncome(response.batch)
+                                                  } else {
+                                                    // $('#batch').val(response.batch);
+                                                    x.muted = true
+                                                    x.play()
+                                                    getVideo();
+                                                    
+                                                  }
+                                                  
+                                                }
+                                              }
+                                            });
+
+                                          
+                                      };
 
                         }
                      }
                    });
         }
+
+        function claimIncome(batch)
+        {
+              $( "#claim" ).on( "click", function() {
+              console.log('click')
+              // var batch = $('#batch').val();
+                                    $.ajax({
+                                                  url: '/member/memberIncome?batch=' + batch,
+                                                  type: 'get',
+                                                  dataType: 'json',
+                                                  success: function(response){
+                                                    // $('#task').empty();
+                                                    console.log(response);
+                                                    var len = 0;
+                                                    if(response.success){
+                                                      RewardsWallet();
+                                                      getVideo();
+                                                    }
+                                                  }
+                                                });
+            } );
+        }
+        RewardsWallet()
+        function RewardsWallet()
+        {
+          $.ajax({
+                     url: '/member/rewardsWallet',
+                     type: 'get',
+                     dataType: 'json',
+                     success: function(response){
+                      $('#rewardsWallet').empty();
+                      console.log(response);
+                       var len = 0;
+                       if(response.success){
+                          $('#rewardsWallet').text(response.total_income);
+                        }
+                     }
+                   });
+        }
+
     });
   </script>
 @endsection()

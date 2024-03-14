@@ -12,6 +12,7 @@ use App\Models\memberincome;
 use App\Models\membertask;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\conversion;
 
 class DashboardController extends Controller
 {
@@ -46,17 +47,35 @@ class DashboardController extends Controller
     {
         $params = [];
 
+        $member_task_id = Request()->task_id;
+
         $date = Carbon::now()->timezone('Asia/Manila')->format('Y-m-d');
 
         $member_task = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date])->orderBy('id', 'DESC')->limit(1)->first();
 
         $count_task = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date])->count();
 
-        if($count_task > 0)
-        {
-            $task_id = $member_task->task_id + 1;
+        $max_count = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date, 'batch' => 10])->max('count');
 
-            $task = task::where('id', $task_id)->first();
+        if($count_task > 0 )
+        {
+            if($member_task->batch == 10 && $max_count == 3)
+            {
+                return response()->json([
+                    'success' => false,
+                    'status' => "No task Available!",
+                ], 200);
+            } 
+            else 
+            {
+                $task_id = $member_task->task_id + 1;
+
+                $task = task::where('id', $task_id)->first();
+                if($task == NULL)
+                {
+                    $task = task::where('id', $member_task_id)->first();
+                }
+            }
         }
         else
         {
@@ -65,7 +84,10 @@ class DashboardController extends Controller
 
         $params['task'] = $task;
 
-        return json_encode($params);
+        return response()->json([
+            'success' => true,
+            'task' => $task,
+        ], 200);
     }
 
     public function insertMemberTask()
@@ -126,6 +148,8 @@ class DashboardController extends Controller
         $member_package = member_package::where(['active' => 1, 'username' => Auth::user()->member->username])->first();
         $package = package::where('id', $member_package->package_id)->first();
 
+         
+
         memberincome::create([
             'member_id' => Auth::user()->id,
             'batch' =>  $batch, 
@@ -142,9 +166,23 @@ class DashboardController extends Controller
     {
         $memberincomes = memberincome::select('income')->where('member_id', Auth::user()->id)->sum('income');
 
+        $conversion = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'PHX TOKEN'])->sum('withdraw');
+
+        $total = floor($memberincomes) - floor($conversion);
+
         return response()->json([
             'success' => true,
-            'total_income' => number_format($memberincomes, 2),
+            'total_income' => number_format($total, 2),
+        ], 200);
+    }
+
+    public function PHXToken()
+    {
+        $conversion = conversion::select('conversion')->where(['member_id' => Auth::user()->id, 'type' => 'PHX TOKEN'])->sum('conversion');
+
+        return response()->json([
+            'success' => true,
+            'conversion' => number_format($conversion, 2),
         ], 200);
     }
 }

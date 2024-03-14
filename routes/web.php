@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CitiesmunicipalitiesController;
+use App\Http\Controllers\ConversionController;
 use Illuminate\Support\Str;
 
 /*
@@ -54,7 +55,9 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/insertTask',[DashboardController::class, 'insertMemberTask']);
             Route::get('/memberIncome',[DashboardController::class, 'memberIncome']);
             Route::get('/rewardsWallet',[DashboardController::class, 'RewardsWallet']);
+            Route::get('/getPHXToken',[DashboardController::class, 'PHXToken']);
             Route::get('/packages',[PackageController::class, 'package']);
+            Route::post('/conversion',[ConversionController::class, 'conversion'])->name('conversion');
             Route::get('/addpackage',[PackageController::class, 'memberpackage']);
         });
     });

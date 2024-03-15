@@ -42,7 +42,7 @@
               <div class="icon">
                 <i><img width="80px" style="margin-bottom: 100%;" height="100%" src="../images/phxcoin.ico" alt=""></i>
               </div>
-              <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-default">Convert <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -50,7 +50,7 @@
             <!-- small box -->
             <div class="small-box bg-secondary">
               <div class="inner">
-                <h3>0.00</h3>
+                <h3 id="aznt">0.00</h3>
 
                 <p>AZNT</p>
               </div>
@@ -65,7 +65,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>0.00</h3>
+                <h3 id="e-wallet">0.00</h3>
 
                 <p>E-Wallet</p>
               </div>
@@ -112,7 +112,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3 id="rewardsWallet"></h3>
-                <p>Rewards Wallet</p>
+                <p>DC Token</p>
               </div>
               <div class="icon">
                 <i class="fas fa-wallet"></i>
@@ -172,6 +172,52 @@
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
+    <div class="modal fade" id="modal-phxtoken">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Convert to AZNT</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="{{ route('conversion_phxtoken') }}">
+              {{ csrf_field() }}
+              <div class="row">
+                  <div class="col-md-12">
+                      <label for="">Convert To: </label>
+                      <select name="convert_to" id="" class="form-control">
+                        <option value="1">AZNT</option>
+                        <option value="2">E - Market</option>
+                      </select>
+                  </div>
+                  <div class="col-md-12">
+                      <label for="">Conversion of PHX Token to AZNT</label>
+                      <input type="text" readonly name="conversion" value="20:1" class="form-control">
+                  </div>
+                  <div class="col-md-12">
+                    <label for="">Remaining Balance</label>
+                    <input type="text" readonly id="phxtoken_bal" required name="balance" class="form-control">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="">Convert</label>
+                      <input type="number" required name="convert" class="form-control">
+                  </div>
+              </div>
+            
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" name="save" class="btn btn-primary">Confirm</button>
+          </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
     <div class="modal fade" id="modal-default">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -341,17 +387,21 @@
 
         function phxToken()
         {
-          $.ajax({
+                          $.ajax({
                             url: '/member/getPHXToken',
                             type: 'get',
                             dataType: 'json',
                             success: function(response){
                               $('#phxtoken').empty();
+                              $('#aznt').empty();
+                              $('#e-wallet').empty();
                               console.log(response);
                               var len = 0;
                               if(response.success){
                                   $('#phxtoken').text(response.conversion);
-                                }
+                                  $('#aznt').text(response.aznt);
+                                  $('#e-wallet').text(response.emarket);
+                              }
                             }
                           });
         }

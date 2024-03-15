@@ -41,7 +41,51 @@ class ConversionController extends Controller
             return redirect()->back()->with('status', 'Insufficient Balance!')->with('color', 'danger');
         }
 
-        
-        
+    }
+
+    public function convertToAznt(Request $request)
+    {
+        $validated = $request->validate([
+            'convert_to' => 'required',
+            'balance' => 'required',
+            'convert' => 'required',
+        ]);
+
+        if(floor($request->convert) <= floor($request->balance))
+        {
+            // if($request->convert % 20 == 0)
+            // {
+                if($request->convert_to == 1)
+                {
+                    $azntToken = $request->convert / 20;
+
+                    conversion::create([
+                        'member_id' => Auth::user()->id,
+                        'withdraw' => $request->convert,
+                        'conversion' => $azntToken, 
+                        'type' => 'AZNT TOKEN'
+                    ]);
+                }
+                else {
+                    conversion::create([
+                        'member_id' => Auth::user()->id,
+                        'withdraw' => $request->convert,
+                        'conversion' => $request->convert, 
+                        'type' => 'E-Wallet'
+                    ]);
+                }
+               
+
+                return redirect()->back()->with('status_aznt', 'Transfer Successfully!')->with('color', 'success');
+            // }
+            // else
+            // {
+            //     return redirect()->back()->with('status_aznt', 'Not Divisible by 20!')->with('color', 'danger');
+            // }
+            
+        } 
+        else {
+            return redirect()->back()->with('status', 'Insufficient Balance!')->with('color', 'danger');
+        }
     }
 }

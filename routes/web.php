@@ -55,9 +55,10 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/insertTask',[DashboardController::class, 'insertMemberTask']);
             Route::get('/memberIncome',[DashboardController::class, 'memberIncome']);
             Route::get('/rewardsWallet',[DashboardController::class, 'RewardsWallet']);
-            Route::get('/getPHXToken',[DashboardController::class, 'PHXToken']);
+            Route::get('/getPHXToken',[DashboardController::class, 'Token']);
             Route::get('/packages',[PackageController::class, 'package']);
             Route::post('/conversion',[ConversionController::class, 'conversion'])->name('conversion');
+            Route::post('/conversion-phxtoken',[ConversionController::class, 'convertToAznt'])->name('conversion_phxtoken');
             Route::get('/addpackage',[PackageController::class, 'memberpackage']);
         });
     });

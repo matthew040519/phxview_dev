@@ -176,13 +176,18 @@ class DashboardController extends Controller
         ], 200);
     }
 
-    public function PHXToken()
+    public function Token()
     {
         $conversion = conversion::select('conversion')->where(['member_id' => Auth::user()->id, 'type' => 'PHX TOKEN'])->sum('conversion');
+        $aznt = conversion::select('conversion')->where(['member_id' => Auth::user()->id, 'type' => 'AZNT TOKEN'])->sum('conversion');
+        $aznt_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'AZNT TOKEN'])->sum('withdraw');
+        $emarket_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'E-Wallet'])->sum('withdraw');
 
         return response()->json([
             'success' => true,
-            'conversion' => number_format($conversion, 2),
+            'conversion' => number_format($conversion - ($aznt_bal + $emarket_bal), 2),
+            'aznt' => number_format($aznt, 2),
+            'emarket' => number_format($emarket_bal, 2),
         ], 200);
     }
 }

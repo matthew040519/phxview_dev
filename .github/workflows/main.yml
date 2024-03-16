@@ -2,7 +2,7 @@ name: Deploy Laravel 10 Project on push
 on:
   push:
     branches:
-      - test
+      - master
 jobs:
   web-deploy:
     name: Deploy
@@ -24,7 +24,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ftpes.phxview.online
+          server: ftp.phxview.online
           username: phxview@phxview.online
           password: phxview2024
           server-dir: /

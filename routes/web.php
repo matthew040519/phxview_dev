@@ -8,6 +8,8 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CitiesmunicipalitiesController;
 use App\Http\Controllers\ConversionController;
+use App\Http\Controllers\WithdrawController;
+use App\Http\Controllers\TreeController;
 use Illuminate\Support\Str;
 
 /*
@@ -51,6 +53,7 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::middleware(['restrictRole:0'])->group(function() {
         Route::prefix('member')->group(function () {
             Route::get('/memberdashboard',[DashboardController::class, 'memberdashboard']);
+            Route::get('/withdraw',[WithdrawController::class, 'index']);
             Route::get('/getTask',[DashboardController::class, 'getTaskData']);
             Route::get('/insertTask',[DashboardController::class, 'insertMemberTask']);
             Route::get('/memberIncome',[DashboardController::class, 'memberIncome']);
@@ -58,8 +61,10 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/getPHXToken',[DashboardController::class, 'Token']);
             Route::get('/packages',[PackageController::class, 'package']);
             Route::post('/conversion',[ConversionController::class, 'conversion'])->name('conversion');
+            Route::post('/addwithdrawal',[WithdrawController::class, 'addwithdrawal'])->name('addwithdrawal');
             Route::post('/conversion-phxtoken',[ConversionController::class, 'convertToAznt'])->name('conversion_phxtoken');
             Route::get('/addpackage',[PackageController::class, 'memberpackage']);
+            Route::get('/genealogy',[TreeController::class, 'genealogy']);
         });
     });
 

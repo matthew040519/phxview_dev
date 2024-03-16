@@ -104,10 +104,27 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="/member/genealogy" class="nav-link">
+                    <i class="nav-icon fas fa-network-wired"></i>
+                    <p>
+                    Genealogy
+                    </p>
+                  </a>
+                </li>
+              <li class="nav-item">
                 <a href="/member/packages" class="nav-link">
                   <i class="nav-icon fa fa-archive"></i>
                   <p>
                     Package
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/member/withdraw" class="nav-link">
+                  <i class="nav-icon fa fa-archive"></i>
+                  <p>
+                    Withdraw
                     <!-- <span class="right badge badge-danger">New</span> -->
                   </p>
                 </a>

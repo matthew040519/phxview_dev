@@ -41,18 +41,36 @@
                       
                   <div class="col-md-3">
                       <div class="card">
+                        
+                        @if($params['member_package']->package_id != $package->id)
+                          <div class="overlay">
+                            <i class="fa fa-3x fa-ban"></i>
+                          </div>
+                        @endif
                           <div class="card-header">
                               <img class="img-thumbmail" width="100%" src="../package.png" alt="">
                           </div>
                           <div class="card-body" style="background-color: {{ $package->color }}">
+                            @if($params['member_package']->package_id == $package->id)
+                                <div class="ribbon-wrapper ribbon-lg">
+                                    <div class="ribbon bg-success">
+                                    Active
+                                    </div>
+                                </div>
+                            @endif
                               <h5 style="font-weight: bold;">{{ $package->package_name }}</h5>
-                              <!-- <label for="">Price:  &#8369; 500.00</label> -->
+                             
                               <p>{{ $package->click }} clicks / 37 videos <br> <p>{{ $package->dc_token }} DC <br><p>{{ $package->dr }} Direct Referall 
-                          </div>
+                                @if($params['member_package']->package_id == $package->id)
+                                <label for="">Days left: {{ $params['member_package']->date_expire  }}</label>
+                              @endif
+                            </div>
                           <div class="card-footer">
                               {{-- <button class="btn btn-primary btn-block">Select</button> --}}
-                              @if($params['member_package'] == 0)
+                              @if($params['member_package']->package_id != $package->id)
                               <a href="/member/addpackage?package_id={{ $package->id }}" class="btn btn-primary btn-block">Select</a>
+                              @else
+                              <a href="#" class="btn btn-success btn-block">Active</a>
                               @endif
                           </div>
                       </div>

@@ -40,7 +40,7 @@ class PackageController extends Controller
         $params = [];
 
         $params['package'] = package::all();
-        $params['member_package'] = member_package::where(['username' => Auth::user()->member->username, 'active' => 1])->count();
+        $params['member_package'] = member_package::selectRaw('*, DATEDIFF(DATE_ADD(tdate, INTERVAL 3 MONTH),  NOW()) as date_expire')->where(['username' => Auth::user()->member->username, 'active' => 1])->first();
 
         return view('member.package')->with('params', $params);
     }

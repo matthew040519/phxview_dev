@@ -83,7 +83,7 @@
     }
     </style>
 </head>
-<body class="hold-transition login-page" style="background-image: url('login_bg.jpg'); background-size:     cover;                      /* <------ */
+<body class="hold-transition login-page" style="background-image: url('login_bg2.jpg'); background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
     background-position: center center;">
 <div class="login-box">
@@ -111,18 +111,18 @@
                       <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                     </div>
             @endif
-  <div class="card card-outline card-primary">
+  <div class="card" style="border: 1px solid white; background: transparent; backdrop-filter: blur(1px);">
     <div class="card-header text-center">
-      <a href="/" class="h1"><b>PHX</b>Click</a>
+      <a href="/" class="h1" style="color: white;"><b>PHX</b>View</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Registration</p>
+      <p class="login-box-msg" style="color: white;">Registration</p>
 
       <form id="regForm" method="POST" action="{{ route('addmember') }}">
         {{ csrf_field() }}
         <!-- One "tab" for each step in the form: -->
         <div class="tab">
-            <h2 style="text-align: center">Account Information</h2>
+            <h2 style="text-align: center; color: white;">Account Information</h2>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="username" placeholder="Username">
                 <div class="input-group-append">
@@ -141,7 +141,7 @@
               </div>
         </div>
         <div class="tab">
-            <h2 style="text-align: center">Personal Information</h2>
+            <h2 style="text-align: center; color: white;">Personal Information</h2>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="first_name" placeholder="First Name">
                 <div class="input-group-append">
@@ -188,7 +188,7 @@
               </div>
         </div>
         <div class="tab">
-            <h2 style="text-align: center">Contact Information</h2>
+            <h2 style="text-align: center; color: white;">Contact Information</h2>
             <div class="input-group mb-3">
                 <input type="email" class="form-control" name="email" placeholder="Email">
                 <div class="input-group-append">
@@ -240,7 +240,7 @@
               </div>
         </div>
         <div class="tab">
-            <h2 style="text-align: center">Network Information</h2>
+            <h2 style="text-align: center; color: white;">Network Information</h2>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="sponsor" placeholder="Sponsor">
                 <div class="input-group-append">
@@ -276,7 +276,7 @@
     
   
       <p class="mb-0">
-        <a href="/" class="text-center">I already have a membership </a>
+        <a href="/" class="text-center" style=" color: white;">I already have a membership </a>
       </p>
     </div>
     <!-- /.card-body -->

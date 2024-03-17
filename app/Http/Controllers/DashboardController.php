@@ -19,6 +19,8 @@ class DashboardController extends Controller
     //
     public function index()
     {
+        
+
         return view('admin.index');
     }
 
@@ -38,9 +40,11 @@ class DashboardController extends Controller
     {
         $params = [];
 
+        $params['member_package'] = member_package::where(['username' => Auth::user()->member->username, 'active' => 1])->first();
+
         $params['task'] = task::all();
 
-        return view('member.index');
+        return view('member.index')->with('params', $params);
     }
 
     public function getTaskData()

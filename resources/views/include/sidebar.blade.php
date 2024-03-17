@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(#04619F, #000000)">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(to right, #04619F, #000000)">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="../logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -104,14 +104,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/member/genealogy" class="nav-link">
-                    <i class="nav-icon fas fa-network-wired"></i>
-                    <p>
-                    Genealogy
-                    </p>
-                  </a>
-                </li>
-              <li class="nav-item">
                 <a href="/member/packages" class="nav-link">
                   <i class="nav-icon fa fa-archive"></i>
                   <p>
@@ -121,6 +113,24 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="/member/profile" class="nav-link">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>
+                    Profile
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/member/genealogy?username={{ Auth::user()->email }}" class="nav-link">
+                    <i class="nav-icon fas fa-network-wired"></i>
+                    <p>
+                    Genealogy
+                    </p>
+                  </a>
+                </li>
+              
+              <li class="nav-item">
                 <a href="/member/withdraw" class="nav-link">
                   <i class="nav-icon fa fa-archive"></i>
                   <p>
@@ -129,6 +139,44 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-file-contract"></i>
+                  <p>
+                  Transaction
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="convertreport.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Conversion Report</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="claimreport.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Claim Report</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="walletreport.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Wallet Report</p>
+                    </a>
+                  </li>
+                </ul>
+                <li class="nav-item">
+                  <a href="/member/market" class="nav-link">
+                      <i class="nav-icon fas fa-shopping-cart"></i>
+                      <p>
+                        Market
+                      </p>
+                    </a>
+                  </li>
+              </li>  
               @endif
               
         </ul>

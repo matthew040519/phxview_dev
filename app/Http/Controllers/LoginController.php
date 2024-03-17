@@ -39,18 +39,20 @@ class LoginController extends Controller
             }
 
             if($validateUser->fails()){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
+                return redirect()->back()->with('status', 'Wrong Username or Password!');
+                // return response()->json([
+                //     'status' => false,
+                //     'message' => 'validation error',
+                //     'errors' => $validateUser->errors()
+                // ], 401);
             }
 
             if(!Auth::attempt($request->only(['email', 'password']))){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email & Password does not match with our record.',
-                ], 401);
+                return redirect()->back()->with('status', 'Wrong Username or Password!');
+                // return response()->json([
+                //     'status' => false,
+                //     'message' => 'Email & Password does not match with our record.',
+                // ], 401);
             }
 
             $user = User::where('email', $request->email)->first();
@@ -76,10 +78,11 @@ class LoginController extends Controller
             // ], 200);
 
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return redirect()->back()->with('status', 'Wrong Username or Password!');
+            // return response()->json([
+            //     'status' => false,
+            //     'message' => $th->getMessage()
+            // ], 500);
         }
     }
 

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="hold-transition login-page" style="background-image: url('login_bg.jpg'); background-size:     cover;                      
+<body class="hold-transition login-page" style="background-image: url('login_bg2.jpg'); background-size:     cover;                      
 background-repeat:   no-repeat;
 background-position: center center;">
 <div class="login-box">
@@ -49,9 +49,9 @@ background-position: center center;">
                       <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                     </div>
             @endif
-  <div class="card card-outline card-primary"  style="background-image: linear-gradient(#04619F, #000000)">
+  <div class="card"  style="border: 1px solid white; background: transparent; backdrop-filter: blur(1px)">
     <div class="card-header text-center">
-      <a href="/" class="h1" style="color: white"><b>PHX</b>Click</a>
+      <a href="/" class="h1" style="color: white"><b>PHX</b>View</a>
     </div>
     
     <div class="card-body">
@@ -114,7 +114,7 @@ background-position: center center;">
         </div>
       </form>
       <p class="mb-0">
-        <a href="/register" class="text-center">Register a new membership</a>
+        <a href="/register" style="color: white;" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->

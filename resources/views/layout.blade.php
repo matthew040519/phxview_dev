@@ -27,7 +27,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="../logo.png" alt="AdminLTELogo" height="150" width="150">

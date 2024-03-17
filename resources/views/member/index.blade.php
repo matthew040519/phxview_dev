@@ -1,12 +1,14 @@
 @extends('layout')
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: url('../login_bg2.jpg'); background-size:     cover;                      
+background-repeat:   no-repeat;
+background-position: center center;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0" style="color: white;">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -23,7 +25,8 @@
     <section class="content">
       <div class="container-fluid"> 
         <!-- Small boxes (Stat box) -->
-        <div class="card" id="task">
+        @if($params['member_package'] != NULL)
+        <div class="card" id="task" style=" background: transparent; backdrop-filter: blur(3px)">
           {{-- <div class="card-header">
             
           </div>
@@ -31,69 +34,87 @@
 
           </div> --}}
         </div>
-        <div class="row">
-          <div class="col-lg-3 col-6" >
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3 id="phxtoken">0.00</h3>
-                <p>Phx Token</p>
-              </div>
-              <div class="icon">
-                <i><img width="80px" style="margin-bottom: 100%;" height="100%" src="../images/phxcoin.ico" alt=""></i>
-              </div>
-              <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
+        @else
+        <div class="card" style="background-image: linear-gradient(#04619F, #000000)">
+          
+          <div class="card-body">
+            <blockquote>
+              <p>Please Select Package First</p>
+              {{-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> --}}
+            </blockquote>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-secondary">
-              <div class="inner">
-                <h3 id="aznt">0.00</h3>
-
-                <p>AZNT</p>
-              </div>
-              <div class="icon">
-                <i><img width="80px" style="margin-bottom: 100%;" height="100%" src="../images/aznt.ico" alt=""></i>
-              </div>
-              <a href="#" class="small-box-footer">  <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3 id="e-wallet">0.00</h3>
-
-                <p>E-Wallet</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-wallet"></i>
-              </div>
-              <a href="#" class="small-box-footer">  <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3 id="time">0.00</h3>
-                <p>Withdrawal</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-wallet"></i>
-              </div>
-              <a href="#" class="small-box-footer">  <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
         </div>
-        
+        @endif
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><img height="150px" src="../images/phxcoin.ico" alt=""></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">Phx Token</p>
+                <h3 class="info-box-number" id="phxtoken">
+                  
+                </h3>
+                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a>
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><img height="120px" src="../images/aznt.ico" alt=""></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">AZNT</p>
+                <h3 class="info-box-number" id="aznt">
+                  
+                </h3>
+                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-wallet"></i></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">E-Wallet</p>
+                <h3 class="info-box-number" id="e-wallet">
+                  
+                </h3>
+                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-credit-card"></i></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">Withdrawal</p>
+                <h3 class="info-box-number" >
+                    0.00
+                </h3>
+                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
             @if(session('status'))
             <div class="alert alert-{{ session('color') }} alert-dismissible" role="alert">
                       <div class="d-flex">
@@ -108,7 +129,149 @@
                       <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                     </div>
               @endif
-            <!-- small box -->
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-coins"></i></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">DC Token</p>
+                <h3 class="info-box-number" id="rewardsWallet">
+                  
+                </h3>
+                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-default">Transfer</a>
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+           
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-users"></i></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">Direct <br> Sponsor</p>
+                <h3 class="info-box-number">
+                  0.00
+                </h3>
+                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-network-wired"></i></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">Unilevel</p>
+                <h3 class="info-box-number">
+                  0.00
+                </h3>
+                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+           
+            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-users"></i></span>
+
+              <div class="info-box-content">
+                <p class="info-box-text">Downlines</p>
+                <h3 class="info-box-number" >
+                  0
+                </h3>
+                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+              </div>
+              
+              <!-- /.info-box-content -->
+            </div>
+            
+            <!-- /.info-box -->
+          </div>
+          {{-- <div class="col-lg-3 col-6"  >
+            <div class="small-box" style="border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <div class="inner">
+                <h3 id="phxtoken">0.00</h3>
+                <p>Phx Token</p>
+              </div>
+              <div class="icon">
+                <i><img width="80px" style="margin-bottom: 100%;" height="100%" src="../images/phxcoin.ico" alt=""></i>
+              </div>
+              <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div> --}}
+          <!-- ./col -->
+          {{-- <div class="col-lg-3 col-6">
+            <div class="small-box" style="border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+              <div class="inner">
+                <h3 id="aznt">0.00</h3>
+
+                <p>AZNT</p>
+              </div>
+              <div class="icon">
+                <i><img width="80px" style="margin-bottom: 100%;" height="100%" src="../images/aznt.ico" alt=""></i>
+              </div>
+              <a href="#" class="small-box-footer">  <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div> --}}
+          {{-- <!-- ./col -->
+          <div class="col-lg-3 col-6">
+           
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3 id="e-wallet">0.00</h3>
+
+                <p>E-Wallet</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-wallet"></i>
+              </div>
+              <a href="#" class="small-box-footer">  <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+         
+          <div class="col-lg-3 col-6">
+            
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3 id="time">0.00</h3>
+                <p>Withdrawal</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-wallet"></i>
+              </div>
+              <a href="#" class="small-box-footer">  <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div> --}}
+         
+        </div>
+        
+        {{-- <div class="row">
+          <div class="col-lg-3 col-6">
+            @if(session('status'))
+            <div class="alert alert-{{ session('color') }} alert-dismissible" role="alert">
+                      <div class="d-flex">
+                        <div>
+                          </div>
+                        <div>
+                          {{ session('status') }}
+                        </div>
+                      </div>
+                      <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                    </div>
+              @endif
             <div class="small-box bg-info">
               <div class="inner">
                 <h3 id="rewardsWallet"></h3>
@@ -120,9 +283,7 @@
               <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-default">Transfer <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-secondary">
               <div class="inner">
                 <h3>0</h3>
@@ -134,10 +295,7 @@
               <a href="#" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>0</h3>
@@ -149,9 +307,7 @@
               <a href="#" class="small-box-footer">  <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>0</h3>
@@ -165,9 +321,9 @@
           </div>
           
           
-        </div>
+        </div> --}}
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-6">
             <div class="card card-primary collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">Free Coupons</h3>
@@ -176,36 +332,26 @@
                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                   </button>
                 </div>
-                <!-- /.card-tools -->
               </div>
-              <!-- /.card-header -->
               <div class="card-body">
-                Sample Coupon
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-3">
-            <div class="card card-primary collapsed-card">
-              <div class="card-header">
-                <h3 class="card-title">Free Coupons</h3>
-  
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
+                <div class="row"> 
+                  <div class="col-md-3">
+                    Sample Coupon
+                  </div>
+                  <div class="col-md-3">
+                    Sample Coupon
+                  </div>
+                  <div class="col-md-3">
+                    Sample Coupon
+                  </div>
+                  <div class="col-md-3">
+                    Sample Coupon
+                  </div>
                 </div>
-                <!-- /.card-tools -->
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                Sample Coupon
-              </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <div class="card card-success collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">Promos</h3>
@@ -214,110 +360,24 @@
                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                   </button>
                 </div>
-                <!-- /.card-tools -->
               </div>
-              <!-- /.card-header -->
               <div class="card-body">
-                Promos
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-3">
-            <div class="card card-success collapsed-card">
-              <div class="card-header">
-                <h3 class="card-title">Promos</h3>
-  
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
+                <div class="row"> 
+                  <div class="col-md-3">
+                    Promos
+                  </div>
+                  <div class="col-md-3">
+                    Promos
+                  </div>
+                  <div class="col-md-3">
+                    Promos
+                  </div>
+                  <div class="col-md-3">
+                    Promos
+                  </div>
                 </div>
-                <!-- /.card-tools -->
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                Promos
-              </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-3">
-            <div class="card card-primary collapsed-card">
-              <div class="card-header">
-                <h3 class="card-title">Free Coupons</h3>
-  
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                Sample Coupon
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-3">
-            <div class="card card-primary collapsed-card">
-              <div class="card-header">
-                <h3 class="card-title">Free Coupons</h3>
-  
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                Sample Coupon
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-3">
-            <div class="card card-success collapsed-card">
-              <div class="card-header">
-                <h3 class="card-title">Promos</h3>
-  
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                Promos
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-3">
-            <div class="card card-success collapsed-card">
-              <div class="card-header">
-                <h3 class="card-title">Promos</h3>
-  
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                Promos
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
           </div>
         </div>
         <!-- /.row -->
@@ -432,7 +492,7 @@
                        var len = 0;
                        if(response.success){
                           var option = "";
-                                      option += "<div class='card-header'>"
+                                      option += "<div class='card-header' style='text-align: center; font-weight: bold; color: white;'>"
                                       option += response.task.task_name 
                                       option += "</div>"
                                       option += "<div class='card-body'>"
@@ -550,10 +610,13 @@
                               $('#phxtoken').empty();
                               $('#aznt').empty();
                               $('#e-wallet').empty();
+                              $('#phxtoken_bal').empty();
                               console.log(response);
                               var len = 0;
                               if(response.success){
+                                
                                   $('#phxtoken').text(response.conversion);
+                                  $('#phxtoken_bal').val(response.conversion);
                                   $('#aznt').text(response.aznt);
                                   $('#e-wallet').text(response.emarket);
                               }

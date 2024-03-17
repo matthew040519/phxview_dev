@@ -10,6 +10,8 @@ use App\Http\Controllers\CitiesmunicipalitiesController;
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\WithdrawController;
 use App\Http\Controllers\TreeController;
+use App\Http\Controllers\MarketController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Str;
 
 /*
@@ -65,6 +67,10 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::post('/conversion-phxtoken',[ConversionController::class, 'convertToAznt'])->name('conversion_phxtoken');
             Route::get('/addpackage',[PackageController::class, 'memberpackage']);
             Route::get('/genealogy',[TreeController::class, 'genealogy']);
+            Route::get('/market',[MarketController::class, 'market']);
+            Route::get('/profile',[ProfileController::class, 'profile']);
+            Route::post('/update-password',[ProfileController::class, 'updatepassword'])->name('updatepassword');
+            Route::post('/update-acc',[ProfileController::class, 'updateacc'])->name('updateacc');
         });
     });
 

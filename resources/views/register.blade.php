@@ -98,11 +98,11 @@
     </div>
 @endif
   @if(session('status'))
-            <div class="alert alert-success alert-dismissible" role="alert">
+            <div class="alert alert-{{ session('color') }} alert-dismissible" role="alert">
                       <div class="d-flex">
                         <div>
                           <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
+                          {{-- <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg> --}}
                         </div>
                         <div>
                           {{ session('status') }}
@@ -251,6 +251,17 @@
               </div>
               <div class="input-group mb-3">
                 <input type="text" class="form-control" name="upline" placeholder="Upline">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <select name="position" id="position" class="form-control">
+                  <option value="left">Left</option>
+                  <option value="right">Right</option>
+                </select>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-user"></span>

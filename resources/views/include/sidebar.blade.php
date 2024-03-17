@@ -150,21 +150,21 @@
                 
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="convertreport.php" class="nav-link">
+                    <a href="/member/convert-report" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Conversion Report</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="claimreport.php" class="nav-link">
+                    <a href="/member/claim-report" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Claim Report</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="walletreport.php" class="nav-link">
+                    <a href="/member/direct-sponsor-report" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Wallet Report</p>
+                      <p>Direct Sponsors Report</p>
                     </a>
                   </li>
                 </ul>
@@ -178,6 +178,15 @@
                   </li>
               </li>  
               @endif
+              <li class="nav-item">
+                <a href="/logout" class="nav-link">
+                  <i class="nav-icon ion ion-power"></i>
+                  <p>
+                    Logout
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
               
         </ul>
       </nav>

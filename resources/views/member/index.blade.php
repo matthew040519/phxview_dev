@@ -24,6 +24,7 @@ background-position: center center;">
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid"> 
+        <img src="../banner.png" class="img-fluid" style="height: 280px; width: 100%; text-align: center" alt="">
         <!-- Small boxes (Stat box) -->
         @if($params['member_package'] != NULL)
         <div class="card" id="task" style=" background: transparent; backdrop-filter: blur(3px)">
@@ -103,8 +104,8 @@ background-position: center center;">
 
               <div class="info-box-content">
                 <p class="info-box-text">Withdrawal</p>
-                <h3 class="info-box-number" >
-                    0.00
+                <h3 class="info-box-number" id="withdrawal">
+                    
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
               </div>
@@ -153,8 +154,8 @@ background-position: center center;">
 
               <div class="info-box-content">
                 <p class="info-box-text">Direct <br> Sponsor</p>
-                <h3 class="info-box-number">
-                  0.00
+                <h3 class="info-box-number" id="dr">
+                  
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
               </div>
@@ -171,8 +172,8 @@ background-position: center center;">
 
               <div class="info-box-content">
                 <p class="info-box-text">Unilevel</p>
-                <h3 class="info-box-number">
-                  0.00
+                <h3 class="info-box-number" id="unilevel">
+                  
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
               </div>
@@ -573,7 +574,8 @@ background-position: center center;">
                                                     var len = 0;
                                                     if(response.success){
                                                       RewardsWallet();
-                                                      getVideo(1);
+                                                      unilevel();
+                                                      
                                                     }
                                                   }
                                                 });
@@ -600,6 +602,24 @@ background-position: center center;">
                    });
         }
 
+        function unilevel()
+        {
+                $.ajax({
+                     url: '/member/unilevel',
+                     type: 'get',
+                     dataType: 'json',
+                     success: function(response){
+                      // $('#rewardsWallet').empty();
+                      console.log(response);
+                       var len = 0;
+                       if(response.success){
+                        getVideo(1);
+                          
+                        }
+                     }
+                   });
+        }
+
         function phxToken()
         {
                           $.ajax({
@@ -611,6 +631,9 @@ background-position: center center;">
                               $('#aznt').empty();
                               $('#e-wallet').empty();
                               $('#phxtoken_bal').empty();
+                              $('#withdrawal').empty();
+                              $('#dr').empty();
+                              $('#unilevel').empty();
                               console.log(response);
                               var len = 0;
                               if(response.success){
@@ -619,6 +642,9 @@ background-position: center center;">
                                   $('#phxtoken_bal').val(response.conversion);
                                   $('#aznt').text(response.aznt);
                                   $('#e-wallet').text(response.emarket);
+                                  $('#withdrawal').text(response.emarket);
+                                  $('#dr').text(response.sponsor);
+                                  $('#unilevel').text(response.sponsor);
                               }
                             }
                           });

@@ -12,6 +12,7 @@ use App\Http\Controllers\WithdrawController;
 use App\Http\Controllers\TreeController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Str;
 
 /*
@@ -69,6 +70,10 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/genealogy',[TreeController::class, 'genealogy']);
             Route::get('/market',[MarketController::class, 'market']);
             Route::get('/profile',[ProfileController::class, 'profile']);
+            Route::get('/convert-report',[ReportController::class, 'convert']);
+            Route::get('/claim-report',[ReportController::class, 'claimreport']);
+            Route::get('/unilevel',[ReportController::class, 'unilevel']);
+            Route::get('/direct-sponsor-report',[ReportController::class, 'directSponsor']);
             Route::post('/update-password',[ProfileController::class, 'updatepassword'])->name('updatepassword');
             Route::post('/update-acc',[ProfileController::class, 'updateacc'])->name('updateacc');
         });

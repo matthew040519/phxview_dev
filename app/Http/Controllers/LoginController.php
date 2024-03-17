@@ -133,6 +133,32 @@ class LoginController extends Controller
             ],
         ]);
 
+        if(User::where('name', $request->first_name.' '.$request->last_name)->count() > 0)
+        {
+            return redirect()->back()->with('status', 'Name is already taken.')->with('color', 'danger');
+        }
+
+        $upline = tree::where('upline', $request->upline)->first();
+
+        if($member_packages = member_package::where(['username' => $request->sponsor, 'active' => 1])->count() == 0){
+            return redirect()->back()->with('status', 'Sponsor must setup package.')->with('color', 'danger');
+        }
+
+        if($request->position == 'left')
+        {
+            if($upline->first != "" && $upline->second != "")
+            {
+                return redirect()->back()->with('status', 'Position is already taken.')->with('color', 'danger');
+            }
+        }
+        else if($request->position == 'right')
+        {
+            if($upline->third != "" && $upline->fourth != "")
+            {
+                return redirect()->back()->with('status', 'Position is already taken.')->with('color', 'danger');
+            }
+        }
+
 
         $code = Str::random(8);
 
@@ -165,34 +191,48 @@ class LoginController extends Controller
             'upline' => $request->username,
         ]);
 
-        
+        $member_packages = member_package::join('packages', 'packages.id', 'member_packages.package_id')->where(['username' => $request->sponsor, 'active' => 1])->first();
+
+        directinvite::create([
+            'sponsor' => $request->sponsor,
+            'username' => $request->username,
+            'amount' => $member_packages->dr
+        ]);
 
         $position = "";
 
         $upline = tree::where('upline', $request->upline)->first();
-        if($upline->first == "")
+        
+        if($request->position == 'left')
         {
-            $position = "first";
+            if($upline->first == "")
+            {
+                $position = "first";
+            }
+            else if($upline->second == ""){
+                $position = "second";
+            }
         }
-        else if($upline->second == ""){
-            $position = "second";
+        else {
+            if($upline->fourth == ""){
+                $position = "fourth";
+            }
+            else if($upline->third == ""){
+                $position = "third";
+            }
         }
-        else if($upline->third == ""){
-            $position = "third";
-        }
-        else if($upline->fourth == ""){
-            $position = "fourth";
-        }
+        
+        
 
         tree::where('upline', $request->upline)->update([$position => $request->username]);
-        member::where('username', $request->username)->update(['position' => $position]);
+        member::where('username', $request->username)->update(['position' => $request->position]);
         $updated_upline = tree::where('upline', $request->upline)->first();
         if($updated_upline->first != "" && $updated_upline->second != "" && $updated_upline->third != "" && $updated_upline->fourth != "")
         {
             tree::where('upline', $request->upline)->update(['complete' => 1]);
         }
         
-        return redirect()->back()->with('status', 'Member Add Successfully');
+        return redirect()->back()->with('status', 'Member Add Successfully')->with('color', 'success');
 
     }
 }

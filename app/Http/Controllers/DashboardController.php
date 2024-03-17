@@ -10,9 +10,11 @@ use App\Models\package;
 use App\Models\member_package;
 use App\Models\memberincome;
 use App\Models\membertask;
+use App\Models\directinvite;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\conversion;
+use App\Models\unilevel;
 
 class DashboardController extends Controller
 {
@@ -186,12 +188,18 @@ class DashboardController extends Controller
         $aznt = conversion::select('conversion')->where(['member_id' => Auth::user()->id, 'type' => 'AZNT TOKEN'])->sum('conversion');
         $aznt_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'AZNT TOKEN'])->sum('withdraw');
         $emarket_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'E-Wallet'])->sum('withdraw');
+        $withdrawal_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'WITHDRAW AZNT'])->sum('withdraw');
+        $sponsor = directinvite::where('sponsor', Auth::user()->member->username)->sum('amount');
+        $unilevel = unilevel::where('username', Auth::user()->member->username)->sum('amount');
 
         return response()->json([
             'success' => true,
             'conversion' => number_format($conversion - ($aznt_bal + $emarket_bal), 2),
             'aznt' => number_format($aznt, 2),
             'emarket' => number_format($emarket_bal, 2),
+            'withdrawal' => number_format($withdrawal_bal, 2),
+            'sponsor' => number_format($sponsor, 2),
+            'unilevel' => number_format($unilevel, 2),
         ], 200);
     }
 }

@@ -27,4 +27,6 @@ jobs:
           server: ftp.phxview.online
           username: dev@dev.phxview.online
           password: phxview2024
+          protocol: ftp
+          secure: control
           server-dir: /

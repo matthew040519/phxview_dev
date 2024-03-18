@@ -44,7 +44,7 @@ class ReportController extends Controller
         $username = Auth::user()->member->username;
         $member = member::where('username', $username)->first();
         // dd($member);
-        $this->uplineCommission($member->upline, $member->username, 6);
+        $this->uplineCommission($member->upline, $member->username, 4);
 
         return response()->json([
             'success' => true,
@@ -57,15 +57,20 @@ class ReportController extends Controller
         $uplinedetails = member::where('username', $upline)->first();
         $uplinecount = member::where('username', $upline)->count();
 
-        
-
         if($uplinecount > 0 && $count != 0)
         {
+            $amount = 0;
             $member_package = member_package::join('packages', 'packages.id', 'member_packages.package_id')->where(['username' => $uplinedetails->username, 'active' => 1])->first();
-
             $count = $count - 1;
 
-            $amount = floor($member_package->dc_token) * ($count / 100);
+            if($count == 3)
+            {
+                $amount = floor($member_package->dc_token) * (2 / 100);
+            }
+            else
+            {
+                $amount = floor($member_package->dc_token) * (1 / 100);
+            }
 
             unilevel::create([
                 'member_id' => Auth::user()->id,

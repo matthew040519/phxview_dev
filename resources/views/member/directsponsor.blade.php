@@ -48,9 +48,9 @@ background-position: center center;">
                     <tbody>
                         @foreach ($params['sponsor'] as $sponsor)
                         <tr>
-                            <td>{{ $convert->tdate }}</td>
-                            <td>{{ $convert->username }}</td>
-                            <td>{{ number_format($convert->amount, 2) }}</td>
+                            <td>{{ $sponsor->tdate }}</td>
+                            <td>{{ $sponsor->username }}</td>
+                            <td>{{ number_format($sponsor->amount, 2) }}</td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -40,7 +40,7 @@ class PackageController extends Controller
         $params = [];
 
         $params['package'] = package::all();
-        $params['member_package'] = member_package::selectRaw('*, DATEDIFF(DATE_ADD(tdate, INTERVAL 3 MONTH),  NOW()) as date_expire')->where(['username' => Auth::user()->member->username, 'active' => 1])->first();
+        $params['member_package'] = member_package::selectRaw('*, DATEDIFF(DATE_ADD(tdate, INTERVAL 5 MONTH),  NOW()) as date_expire')->where(['username' => Auth::user()->member->username, 'active' => 1])->first();
 
         return view('member.package')->with('params', $params);
     }
@@ -56,10 +56,12 @@ class PackageController extends Controller
 
         $package = package::where('id', $package_id)->first();
 
+        $total = (($package->dc_token * 10) * 150) * 0.1;
+
         directinvite::create([
             'sponsor' => Auth::user()->member->sponsor,
             'username' => Auth::user()->member->username,
-            'amount' => number_format($package->dr, 2),
+            'amount' => number_format($total, 2),
         ]);
 
         member::where('username', Auth::user()->member->username)->update(['package' => $package->package_name]);

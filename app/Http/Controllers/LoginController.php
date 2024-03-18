@@ -191,14 +191,6 @@ class LoginController extends Controller
             'upline' => $request->username,
         ]);
 
-        $member_packages = member_package::join('packages', 'packages.id', 'member_packages.package_id')->where(['username' => $request->sponsor, 'active' => 1])->first();
-
-        directinvite::create([
-            'sponsor' => $request->sponsor,
-            'username' => $request->username,
-            'amount' => $member_packages->dr
-        ]);
-
         $position = "";
 
         $upline = tree::where('upline', $request->upline)->first();

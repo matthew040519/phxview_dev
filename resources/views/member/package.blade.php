@@ -55,7 +55,7 @@ background-position: center center; color: white;">
                                 <img class="img-thumbmail" width="100%" src="../package.png" alt="">
                               </div>
                             </div>
-                            <div class="card-body" style="background-color: {{ $package->color }}">
+                            <div class="card-body" style="background-color: {{ $package->color }}; color: black">
                               @if($params['member_package']->package_id == $package->id)
                                   <div class="ribbon-wrapper ribbon-lg">
                                       <div class="ribbon bg-success">
@@ -70,7 +70,7 @@ background-position: center center; color: white;">
                                   <label for="">Days left: {{ $params['member_package']->date_expire  }}</label>
                                 @endif
                               </div>
-                            <div class="card-footer">
+                            <div class="card-footer" >
                                 {{-- <button class="btn btn-primary btn-block">Select</button> --}}
                                 @if($params['member_package']->package_id != $package->id)
                                 <a href="/member/addpackage?package_id={{ $package->id }}" class="btn btn-primary btn-block">Select</a>

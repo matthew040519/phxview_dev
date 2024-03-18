@@ -59,7 +59,7 @@ class ReportController extends Controller
 
         
 
-        if($uplinecount > 0)
+        if($uplinecount > 0 && $count != 0)
         {
             $member_package = member_package::join('packages', 'packages.id', 'member_packages.package_id')->where(['username' => $uplinedetails->username, 'active' => 1])->first();
 

@@ -176,6 +176,14 @@
                       </p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/member/games" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                          Games
+                        </p>
+                      </a>
+                    </li>
               </li>  
               @endif
               <li class="nav-item">

@@ -202,4 +202,9 @@ class DashboardController extends Controller
             'unilevel' => number_format($unilevel, 2),
         ], 200);
     }
+
+    public function games()
+    {
+        return view('member.games');
+    }
 }

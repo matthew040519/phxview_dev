@@ -73,6 +73,7 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/convert-report',[ReportController::class, 'convert']);
             Route::get('/claim-report',[ReportController::class, 'claimreport']);
             Route::get('/unilevel',[ReportController::class, 'unilevel']);
+            Route::get('/games',[DashboardController::class, 'games']);
             Route::get('/direct-sponsor-report',[ReportController::class, 'directSponsor']);
             Route::post('/update-password',[ProfileController::class, 'updatepassword'])->name('updatepassword');
             Route::post('/update-acc',[ProfileController::class, 'updateacc'])->name('updateacc');

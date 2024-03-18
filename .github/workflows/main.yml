@@ -1,8 +1,8 @@
-name: Deploy Laravel Project on push
+name: Deploy Laravel 10 Project on push
 on:
   push:
     branches:
-      - dev
+      - master
 jobs:
   web-deploy:
     name: Deploy
@@ -25,8 +25,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           server: ftp.phxview.online
-          username: dev@dev.phxview.online
+          username: phxview@phxview.online
           password: phxview2024
-          protocol: ftp
-          secure: control
           server-dir: /

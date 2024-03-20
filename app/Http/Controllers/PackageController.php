@@ -61,7 +61,7 @@ class PackageController extends Controller
         directinvite::create([
             'sponsor' => Auth::user()->member->sponsor,
             'username' => Auth::user()->member->username,
-            'amount' => number_format($total, 2),
+            'amount' => $total
         ]);
 
         member::where('username', Auth::user()->member->username)->update(['package' => $package->package_name]);

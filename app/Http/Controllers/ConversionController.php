@@ -17,7 +17,7 @@ class ConversionController extends Controller
             'convert' => 'required',
         ]);
 
-        if(floor($request->convert) < floor($request->balance))
+        if($request->convert <= $request->balance)
         {
             if($request->convert % 5 == 0)
             {
@@ -51,7 +51,7 @@ class ConversionController extends Controller
             'convert' => 'required',
         ]);
 
-        if(floor($request->convert) <= floor($request->balance))
+        if($request->convert <= $request->balance)
         {
             // if($request->convert % 20 == 0)
             // {

@@ -26,7 +26,7 @@ class ReportController extends Controller
     public function claimreport()
     {
         $params = [];
-        $params['convert'] = memberincome::where(['member_id' => Auth::user()->id])->orderBy('tdate', 'DESC')->get();
+        $params['convert'] = memberincome::where(['member_id' => Auth::user()->id, 'type' => 0])->orderBy('tdate', 'DESC')->get();
 
         return view('member.claimreport')->with('params', $params);
     }
@@ -34,7 +34,7 @@ class ReportController extends Controller
     public function directSponsor()
     {
         $params = [];
-        $params['sponsor'] = directinvite::where(['sponsor' => Auth::user()->member->username])->get();
+        $params['sponsor'] = directinvite::where(['sponsor' => Auth::user()->member->username, 'type' => 0])->get();
 
         return view('member.directsponsor')->with('params', $params);
     }
@@ -44,18 +44,18 @@ class ReportController extends Controller
         $username = Auth::user()->member->username;
         $member = member::where('username', $username)->first();
         // dd($member);
-        $this->uplineCommission($member->upline, $member->username, 4);
+        $this->uplineCommission($member->sponsor, $member->username, 4);
 
         return response()->json([
             'success' => true,
         ], 200);
     }
 
-    public function uplineCommission($upline, $username, $count)
+    public function uplineCommission($sponsor, $username, $count)
     {
 
-        $uplinedetails = member::where('username', $upline)->first();
-        $uplinecount = member::where('username', $upline)->count();
+        $uplinedetails = member::where('username', $sponsor)->first();
+        $uplinecount = member::where('username', $sponsor)->count();
 
         if($uplinecount > 0 && $count != 0)
         {
@@ -78,7 +78,7 @@ class ReportController extends Controller
                 'amount' => $amount
             ]);
 
-            $this->uplineCommission($uplinedetails->upline, $uplinedetails->username, $count);
+            $this->uplineCommission($uplinedetails->sponsor, $uplinedetails->username, $count);
         }
     }
 }

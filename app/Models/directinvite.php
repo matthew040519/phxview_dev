@@ -10,5 +10,5 @@ class directinvite extends Model
     use HasFactory;
 
     protected $table = 'directinvites';
-    protected $fillable = ['sponsor', 'username', 'amount'];
+    protected $fillable = ['sponsor', 'username', 'amount', 'type'];
 }

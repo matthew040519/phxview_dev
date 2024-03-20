@@ -10,5 +10,5 @@ class conversion extends Model
     use HasFactory;
 
     protected $table = 'conversion';
-    protected $fillable = ['member_id', 'withdraw', 'conversion', 'type', 'date'];
+    protected $fillable = ['member_id', 'withdraw', 'conversion', 'type', 'transfer', 'date'];
 }

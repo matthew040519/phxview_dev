@@ -167,6 +167,12 @@
                       <p>Direct Sponsors Report</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/member/p2p-transaction" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>P2P Transaction</p>
+                    </a>
+                  </li>
                 </ul>
                 <li class="nav-item">
                   <a href="/member/market" class="nav-link">
@@ -178,7 +184,7 @@
                   </li>
                   <li class="nav-item">
                     <a href="/member/games" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <i class="nav-icon fa fa-puzzle-piece"></i>
                         <p>
                           Games
                         </p>

@@ -1,5 +1,19 @@
 @extends('layout')
+
 @section('content')
+<style>
+  @media only screen and (max-width: 600px) {
+    #banner{
+      object-fit: cover;
+      width: 100%;
+    }
+    #carousel-img{
+      object-fit: cover;
+      width: 100%;
+      height: 300px;
+    }
+  }
+</style>
 <div class="content-wrapper" style="background-image: url('../login_bg2.jpg'); background-size:     cover;                      
 background-repeat:   no-repeat;
 background-position: center center;">
@@ -24,7 +38,7 @@ background-position: center center;">
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid"> 
-        <img src="../banner.png" class="img-fluid" style="height: 280px; width: 100%; text-align: center" alt="">
+        <img src="../banner2.png" id="banner" class="img-thumbnail" style="width: 100%; text-align: center; " alt="">
         <!-- Small boxes (Stat box) -->
         @if($params['member_package'] != NULL)
         <div class="card" id="task" style=" background: transparent; backdrop-filter: blur(3px)">
@@ -153,11 +167,11 @@ background-position: center center;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-users"></i></span>
 
               <div class="info-box-content">
-                <p class="info-box-text">Direct <br> Sponsor</p>
+                <p class="info-box-text" id="ds">Direct Sponsor</p>
                 <h3 class="info-box-number" id="dr">
                   
                 </h3>
-                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-ds">Transfer</i></a>
               </div>
               
               <!-- /.info-box-content -->
@@ -175,7 +189,7 @@ background-position: center center;">
                 <h3 class="info-box-number" id="unilevel">
                   
                 </h3>
-                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-unilevel">Transfer</i></a>
               </div>
               
               <!-- /.info-box-content -->
@@ -380,6 +394,43 @@ background-position: center center;">
               </div>
             </div>
           </div>
+          <div class="col-sm-12">
+            <div class="card" style="background: transparent; backdrop-filter: blur(3px); color: white;">
+              <div class="card-header">
+                <h3 class="card-title">Future Partners</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="d-block w-100" id="carousel-img" height="400px" src="https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block w-100" id="carousel-img" height="400px" src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block w-100" id="carousel-img" height="400px" src="https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
         </div>
         <!-- /.row -->
         <!-- Main row -->
@@ -473,12 +524,82 @@ background-position: center center;">
       </div>
       <!-- /.modal-dialog -->
     </div>
+    <div class="modal fade" id="modal-ds">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Transfer to DC TOKEN</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="{{ route('ds_to_dc') }}">
+              {{ csrf_field() }}
+              <div class="row">
+                  <div class="col-md-12">
+                    <label for="">Remaining Balance</label>
+                    <input type="text" readonly id="dr1" required name="balance" class="form-control">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="">Convert</label>
+                      <input type="text" required name="convert" class="form-control">
+                  </div>
+              </div>
+            
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" name="save" class="btn btn-primary">Confirm</button>
+          </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="modal-unilevel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Transfer to DC TOKEN</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="{{ route('unilevel_to_dc') }}">
+              {{ csrf_field() }}
+              <div class="row">
+                  <div class="col-md-12">
+                    <label for="">Remaining Balance</label>
+                    <input type="text" readonly id="unilevel1" required name="balance" class="form-control">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="">Convert</label>
+                      <input type="text" required name="convert" class="form-control">
+                  </div>
+              </div>
+            
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" name="save" class="btn btn-primary">Confirm</button>
+          </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
     <!-- /.content -->
   </div>
   <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
   <script>
     $(document).ready(function(){
-
+      $("#ds").css({ 'overflow: hidden' : '', 'text-overflow' : '' });
       getVideo(1);
 
         function getVideo(task_id)
@@ -634,17 +755,20 @@ background-position: center center;">
                               $('#withdrawal').empty();
                               $('#dr').empty();
                               $('#unilevel').empty();
+                              $('#unilevel1').empty();
                               console.log(response);
                               var len = 0;
                               if(response.success){
-                                
+
                                   $('#phxtoken').text(response.conversion);
                                   $('#phxtoken_bal').val(response.conversion);
                                   $('#aznt').text(response.aznt);
                                   $('#e-wallet').text(response.emarket);
-                                  $('#withdrawal').text(response.emarket);
+                                  $('#withdrawal').text(response.withdrawal);
                                   $('#dr').text(response.sponsor);
-                                  $('#unilevel').text(response.sponsor);
+                                  $('#dr1').val(response.sponsor);
+                                  $('#unilevel').text(response.unilevel);
+                                  $('#unilevel1').val(response.unilevel);
                               }
                             }
                           });

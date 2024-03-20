@@ -12,12 +12,12 @@ background-position: center center;">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="color: white">Withdrawal</h1>
+            <h1 class="m-0" style="color: white">Person To Person</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Withdrawal</li>
+              <li class="breadcrumb-item active">Person To Person</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -54,7 +54,7 @@ background-position: center center;">
             @endif
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"></i> Add Withdrawal</button></h3>
+                  <h3 class="card-title"><button class="btn btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"></i> Add Transfer</button></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -66,12 +66,12 @@ background-position: center center;">
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($params['aznt'] as $aznt)
+                        {{-- @foreach ($params['aznt'] as $aznt)
                         <tr>
                             <td>{{ number_format($aznt->withdraw, 2) }}</td>
                             <td>{{ $aznt->date }}</td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                   </table>
                 </div>
@@ -99,12 +99,16 @@ background-position: center center;">
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="{{ route('addwithdrawal') }}">
+          <form method="POST" action="{{ route('transferfunds') }}">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-12">
-                    <label for="">Amount to withdraw</label>
-                    <input type="text" required name="withdraw" class="form-control">
+                  <label for="">Username</label>
+                  <input type="text" required name="username" class="form-control">
+                </div>
+                <div class="col-md-12">
+                    <label for="">Amount to Transfer</label>
+                    <input type="text" required name="transfer" class="form-control">
                 </div>
             </div>
           

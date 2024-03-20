@@ -13,6 +13,7 @@ use App\Http\Controllers\TreeController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Str;
 
 /*
@@ -74,9 +75,13 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/claim-report',[ReportController::class, 'claimreport']);
             Route::get('/unilevel',[ReportController::class, 'unilevel']);
             Route::get('/games',[DashboardController::class, 'games']);
+            Route::post('/ds-to-dc',[DashboardController::class, 'ds_to_dc'])->name('ds_to_dc');
+            Route::post('/unilevel-to-dc',[DashboardController::class, 'unilevel_to_dc'])->name('unilevel_to_dc');
             Route::get('/direct-sponsor-report',[ReportController::class, 'directSponsor']);
+            Route::get('/p2p-transaction',[MemberController::class, 'p2ptransaction']);
             Route::post('/update-password',[ProfileController::class, 'updatepassword'])->name('updatepassword');
             Route::post('/update-acc',[ProfileController::class, 'updateacc'])->name('updateacc');
+            Route::post('/transfer-funds',[MemberController::class, 'transfer'])->name('transferfunds');
         });
     });
 

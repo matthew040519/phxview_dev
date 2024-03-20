@@ -10,5 +10,5 @@ class memberincome extends Model
     use HasFactory;
 
     protected $table = 'memberincomes';
-    protected $fillable = ['member_id', 'batch', 'tdate', 'income'];
+    protected $fillable = ['member_id', 'batch', 'tdate', 'income', 'type'];
 }

@@ -178,7 +178,7 @@ class DashboardController extends Controller
 
         return response()->json([
             'success' => true,
-            'total_income' => number_format($total, 2),
+            'total_income' => $total,
         ], 200);
     }
 
@@ -187,24 +187,94 @@ class DashboardController extends Controller
         $conversion = conversion::select('conversion')->where(['member_id' => Auth::user()->id, 'type' => 'PHX TOKEN'])->sum('conversion');
         $aznt = conversion::select('conversion')->where(['member_id' => Auth::user()->id, 'type' => 'AZNT TOKEN'])->sum('conversion');
         $aznt_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'AZNT TOKEN'])->sum('withdraw');
-        $emarket_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'E-Wallet'])->sum('withdraw');
+        $emarket = conversion::select('conversion')->where(['member_id' => Auth::user()->id, 'type' => 'E-Wallet'])->sum('conversion');
+        $emarket_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'E-Wallet', 'transfer' => 0])->sum('withdraw');
         $withdrawal_bal = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'WITHDRAW AZNT'])->sum('withdraw');
         $sponsor = directinvite::where('sponsor', Auth::user()->member->username)->sum('amount');
         $unilevel = unilevel::where('username', Auth::user()->member->username)->sum('amount');
 
+        $totalconversion = $conversion - ($aznt_bal + $emarket_bal);
+
         return response()->json([
             'success' => true,
-            'conversion' => number_format($conversion - ($aznt_bal + $emarket_bal), 2),
-            'aznt' => number_format($aznt, 2),
-            'emarket' => number_format($emarket_bal, 2),
-            'withdrawal' => number_format($withdrawal_bal, 2),
-            'sponsor' => number_format($sponsor, 2),
-            'unilevel' => number_format($unilevel, 2),
+            'conversion' => (float)$totalconversion,
+            'aznt' => floatval($aznt),
+            'emarket' => floatval($emarket),
+            'withdrawal' => floatval($withdrawal_bal),
+            'sponsor' => floatval($sponsor),
+            'unilevel' => floatval($unilevel),
         ], 200);
     }
 
     public function games()
     {
         return view('member.games');
+    }
+
+    public function ds_to_dc(Request $request)
+    {
+        $validated = $request->validate([
+            'convert' => 'required|max:255',
+            'balance' => 'required',
+        ]);
+
+        $convert = $request->convert;
+        $balance = $request->balance;
+
+        if($convert > $balance)
+        {
+            return redirect()->back()->with('status', 'Insufficient Balance!')->with('color', 'danger');
+        }
+
+        $tdate = Carbon::now()->timezone('Asia/Manila')->format('Y-m-d');
+        
+        memberincome::create([
+            'member_id' => Auth::user()->id,
+            'batch' =>  1, 
+            'tdate' =>  $tdate,
+            'income' => $request->convert,
+            'type' => 1
+        ]);
+
+        directinvite::create([
+            'sponsor' => Auth::user()->member->username,
+            'username' => Auth::user()->member->username,
+            'amount' => -$convert,
+            'type' => 1,
+        ]);
+
+        return redirect()->back()->with('status', 'Transfer Successfully')->with('color', 'success');
+
+    }
+
+    public function unilevel_to_dc(Request $request)
+    {
+        $validated = $request->validate([
+            'convert' => 'required|max:255',
+            'balance' => 'required',
+        ]);
+
+        if($request->convert > $request->balance)
+        {
+            return redirect()->back()->with('status', 'Insufficient Balance!')->with('color', 'danger');
+        }
+
+        $tdate = Carbon::now()->timezone('Asia/Manila')->format('Y-m-d');
+
+        unilevel::create([
+            'member_id' => Auth::user()->id,
+            'username' => Auth::user()->member->username,
+            'amount' => -$request->convert
+        ]);
+
+        memberincome::create([
+            'member_id' => Auth::user()->id,
+            'batch' =>  1, 
+            'tdate' =>  $tdate,
+            'income' => $request->convert,
+            'type' => 1
+        ]);
+
+        return redirect()->back()->with('status', 'Transfer Successfully')->with('color', 'success');
     }
 }

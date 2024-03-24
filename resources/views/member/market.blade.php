@@ -89,7 +89,7 @@ background-position: center center; color: white;">
                 var    card = "<div class='col-md-3'>";
                 card += "<div class='card'>";
                  card +=  "<div class='card-header'>"
-                    card +=  "<img class='img-thumbnail' style='height: 215px; width: 215px;' src="+ products_category1[x].image +" >"
+                    card +=  "<img class='img-fluid' style='height: 215px; width: 100%;' src="+ products_category1[x].image +" >"
                  card +=  "</div>"
                  card +=  "<div class='card-body'>"
                     card += "<label style='color: black'>" + products_category1[x].product_name + "</label><br>"

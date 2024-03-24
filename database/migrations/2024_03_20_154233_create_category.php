@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transferfunds', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->id();
-            $table->integer('transaction_id');
-            $table->integer('sender_id');
-            $table->integer('receiver_id');
-            $table->decimal('amount', 8, 2);
-            $table->timestamp('tdate');
+            $table->text('category_name');
+            $table->text('image');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transferfunds');
+        Schema::dropIfExists('category');
     }
 };

@@ -113,6 +113,22 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="/member/market" class="nav-link">
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                    <p>
+                      Market
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/member/games" class="nav-link">
+                      <i class="nav-icon fa fa-puzzle-piece"></i>
+                      <p>
+                        Games
+                      </p>
+                    </a>
+                  </li>
+              <li class="nav-item">
                 <a href="/member/profile" class="nav-link">
                   <i class="nav-icon fas fa-user"></i>
                   <p>
@@ -174,22 +190,7 @@
                     </a>
                   </li>
                 </ul>
-                <li class="nav-item">
-                  <a href="/member/market" class="nav-link">
-                      <i class="nav-icon fas fa-shopping-cart"></i>
-                      <p>
-                        Market
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/member/games" class="nav-link">
-                        <i class="nav-icon fa fa-puzzle-piece"></i>
-                        <p>
-                          Games
-                        </p>
-                      </a>
-                    </li>
+                
               </li>  
               @endif
               <li class="nav-item">

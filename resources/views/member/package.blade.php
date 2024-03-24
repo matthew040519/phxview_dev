@@ -112,7 +112,7 @@ background-position: center center; color: white;">
           <div class="col-md-3">
                       <div class="card" >
                           <div class="card-header">
-                              <img class="img-thumbmail" width="100%" src="../logo/package.png" alt="">
+                              <img class="img-thumbmail" width="100%" src="../package.png" alt="">
                           </div>
                           <div class="card-body" style="background-color: rgb(<?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>);">
                               <h5 style="font-weight: bold;">VIP1</h5>
@@ -128,7 +128,7 @@ background-position: center center; color: white;">
                   <div class="col-md-3">
                       <div class="card" >
                           <div class="card-header">
-                              <img class="img-thumbmail" width="100%" src="../logo/package.png" alt="">
+                              <img class="img-thumbmail" width="100%" src="../package.png" alt="">
                           </div>
                           <div class="card-body" style="background-color: rgb(<?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>);">
                               <h5 style="font-weight: bold;">VIP2</h5>
@@ -144,7 +144,7 @@ background-position: center center; color: white;">
                   <div class="col-md-3">
                       <div class="card" >
                           <div class="card-header">
-                              <img class="img-thumbmail" width="100%" src="../logo/package.png" alt="">
+                              <img class="img-thumbmail" width="100%" src="../package.png" alt="">
                           </div>
                           <div class="card-body" style="background-color: rgb(<?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>);">
                               <h5 style="font-weight: bold;">VIP3</h5>
@@ -160,7 +160,7 @@ background-position: center center; color: white;">
                   <div class="col-md-3">
                       <div class="card" >
                           <div class="card-header">
-                              <img class="img-thumbmail" width="100%" src="../logo/package.png" alt="">
+                              <img class="img-thumbmail" width="100%" src="../package.png" alt="">
                           </div>
                           <div class="card-body" style="background-color: rgb(<?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>, <?php echo rand(0,255); ?>);">
                               <h5 style="font-weight: bold;">VIP4</h5>

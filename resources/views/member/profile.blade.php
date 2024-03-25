@@ -116,7 +116,8 @@ background-position: center center">
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="timeline">
                       <!-- The timeline -->
-                      <form class="form-horizontal">
+                      <form class="form-horizontal" method="POST" action="{{ route('updateinfo') }}">
+                        {{ csrf_field() }}
                         <div class="form-group row">
                             <div class="col-md-4">
                                 <label for="inputName" class=" col-form-label">First Name</label>
@@ -132,17 +133,22 @@ background-position: center center">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputName" class=" col-form-label">Birthday</label>
-                                <input type="date" readonly class="form-control" value="{{ Auth::user()->member->birthday }}" name="bday" id="inputName" placeholder="Username">
+                                <input type="date" class="form-control" value="{{ Auth::user()->member->birthday }}" name="bday" id="inputName" placeholder="Username">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputName"  class=" col-form-label">Gender</label>
-                                <select name="gender" readonly class="form-control" id="">
+                                <select name="gender" class="form-control" id="">
+                                    <option value="" disabled selected></option>
                                     <option value="Male" @if(Auth::user()->member->gender == 'Male') selected @endif>Male</option>
                                     <option value="Female" @if(Auth::user()->member->gender == 'Female') selected @endif>FeMale</option>
                                 </select>
                             </div>
                         </div>
-                        
+                        <div class="form-group row">
+                          <div class="col-sm-10">
+                            <button type="submit" class="btn btn-success">Update</button>
+                          </div>
+                        </div>
                       </form>
                     </div>
 
@@ -153,21 +159,37 @@ background-position: center center">
                           <div class="form-group row">
                               <div class="col-md-4">
                                   <label for="inputName" class=" col-form-label">Province</label>
-                                  <select name="province_id" readonly id="province_id" class="form-control">
+                                  <select name="province_id" id="province_id" class="form-control">
                                     <option value="" disabled selected>Province</option>
                                     @foreach ($params['province'] as $province)
-                                      <option value="{{ $province->code }}" @if(Auth::user()->member->province_code == $province->code) selected @endif>{{ $province->name }}</option>
+                                      <option value="{{ $province->code }}" @if(Auth::user()->member->province_code != NULL && Auth::user()->member->province_code==$province->code) selected @endif>{{ $province->name }}</option>
                                     @endforeach
                                 </select>
                               </div>
                               <div class="col-md-4">
                                   <label for="inputName" class=" col-form-label">City/Municipalities</label>
-                                  <input type="text" readonly class="form-control" value="{{ $params['citiesmunicipalities']->name }}">
+                                  <select name="city_id" id="city_id" class="form-control">
+                                    {{-- <option value="" disabled selected>City</option> --}}
+                                    @if(Auth::user()->member->city_code != NULL)
+                                      @foreach ($params['citiesmunicipalities'] as $city)
+                                        <option value="{{ $city->code }}" @if(Auth::user()->member->city_code != NULL && Auth::user()->member->city_code==$city->code) selected @endif>{{ $city->name }}</option>
+                                      @endforeach
+                                    @endif
+                                  </select>
                               </div>
                               <div class="col-md-4">
                                   <label for="inputName" class=" col-form-label">Barangay</label>
+                                  {{-- @if(Auth::user()->member->brgy_code != NULL) --}}
+                                  {{-- @foreach ($params['brgy'] as $brgy)
+                                    <option value="{{ $brgy->code }}" @if(Auth::user()->member->brgy_code != NULL && Auth::user()->member->brgy_code==$brgy->code) selected @endif>{{ $brgy->name }}</option>
+                                  @endforeach --}}
                                   <input type="hidden" id="brgy_code" value="{{ Auth::user()->member->brgy_code }}">
-                                  <input type="text" id="brgy" readonly class="form-control">
+                                  {{-- @endif --}}
+                                  <select name="brgy_id" id="brgy_id" class="form-control">
+                                    {{-- <option value="" disabled selected>Barangay</option> --}}
+                                   
+                                    {{-- <input type="text" value="{{ Auth::user()->member->brgy_code }}"> --}}
+                                  </select>
                               </div>
                               <div class="col-md-4">
                                 <label for="inputName" class=" col-form-label">GCash</label>
@@ -255,26 +277,82 @@ background-position: center center">
                  });
         } );
 
-        brgy();
-
-        function brgy()
+        // brgy();
+        var brgy_code = $('#brgy_code').val();
+        console.log(brgy_code)
+        if(brgy_code != null)
         {
-            var brgy_code = $('#brgy_code').val();
-                $.ajax({
-                   url: 'https://psgc.gitlab.io/api/barangays/' + brgy_code,
-                   type: 'get',
-                   dataType: 'json',
-                   success: function(response){
-                    $('#brgy').empty();
-                    console.log(response);
-                     var len = 0;
-                     if(response != null){
-                        len = response.length;
-                        $("#brgy").val(response.name);   
+          var city_id = $('#city_id').val();
+                  $.ajax({
+                     url: '/brgy?city_id=' + city_id,
+                     type: 'get',
+                     dataType: 'json',
+                     success: function(response){
+                      $('#brgy_id').empty();
+                      console.log(response);
+                       var len = 0;
+                       if(response != null){
+                          len = response.length;
+                       }
+
+                       if(len > 0){
+                          var option = "";
+                                         for(var i=0; i<len; i++){
+
+                                              var code = response[i].code;
+                                              var name = response[i].name;
+
+                                              if(brgy_code == code)
+                                              {
+                                                option += "<option selected value=" + code +">" + name + "</option>";
+                                              }
+                                              else{
+                                                option += "<option value=" + code +">" + name + "</option>";
+                                              }
+                                              
+                                          }
+
+                                          $("#brgy_id").append(option);    
+
+                       }
+                       else{
+                       }
                      }
-                   }
-                 });
+                   });
         }
+
+        $('#city_id').on('change', function() {
+              var city_id = $('#city_id').val();
+                  $.ajax({
+                     url: '/brgy?city_id=' + city_id,
+                     type: 'get',
+                     dataType: 'json',
+                     success: function(response){
+                      $('#brgy_id').empty();
+                      console.log(response);
+                       var len = 0;
+                       if(response != null){
+                          len = response.length;
+                       }
+
+                       if(len > 0){
+                          var option = "";
+                                         for(var i=0; i<len; i++){
+
+                                              var code = response[i].code;
+                                              var name = response[i].name;
+
+                                              option += "<option value=" + code +">" + name + "</option>";
+                                          }
+
+                                          $("#brgy_id").append(option);    
+
+                       }
+                       else{
+                       }
+                     }
+                   });
+          } );
             
     });
   </script>

@@ -82,6 +82,7 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/p2p-transaction',[MemberController::class, 'p2ptransaction']);
             Route::post('/update-password',[ProfileController::class, 'updatepassword'])->name('updatepassword');
             Route::post('/update-acc',[ProfileController::class, 'updateacc'])->name('updateacc');
+            Route::post('/update-info',[ProfileController::class, 'updateinfo'])->name('updateinfo');
             Route::post('/transfer-funds',[MemberController::class, 'transfer'])->name('transferfunds');
         });
     });

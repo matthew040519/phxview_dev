@@ -72,9 +72,6 @@ background-position: center center;">
     <!-- /.content -->
   </div>
 
-  
-  
-  
 @endsection()
 
 

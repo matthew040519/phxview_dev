@@ -21,11 +21,17 @@ class ProfileController extends Controller
         $params = [];
 
         $params['province'] = Province::orderBy('name','asc')->get();
-        $params['citiesmunicipalities'] = citiesmunicipalities::where('code', Auth::user()->member->city_code)->first();
-        
-        $brgy_code = Auth::user()->member->brgy_code;
+        // 
 
-        $params['brgy'] = Http::get("https://psgc.gitlab.io/api/barangays/$brgy_code/");
+        if(Auth::user()->member->city_code != NULL)
+        {
+            $city_id = Auth::user()->member->city_code;
+            $params['citiesmunicipalities'] = citiesmunicipalities::where('provinceCode', Auth::user()->member->province_code)->get();
+            $params['brgy'] = Http::get("https://psgc.gitlab.io/api/cities-municipalities/$city_id/barangays/");
+        } else 
+        {
+            $params['citiesmunicipalities'] = citiesmunicipalities::all();
+        }        
 
         $params['member_package'] = member_package::selectRaw('*, DATEDIFF(DATE_ADD(tdate, INTERVAL 3 MONTH),  NOW()) as date_expire')->where(['username' => Auth::user()->member->username, 'active' => 1])->first();
 
@@ -46,9 +52,27 @@ class ProfileController extends Controller
     public function updateacc(Request $request)
     {
        
-            member::where('id', Auth::user()->member->id)->update(['tron_wallet_id' => $request->thron_id, 'gcash' => $request->gcash]);
+            member::where('id', Auth::user()->member->id)
+            ->update([
+                'tron_wallet_id' => $request->thron_id, 
+                'gcash' => $request->gcash,
+                'province_code' => $request->province_id,
+                'city_code' => $request->city_id,
+                'brgy_code' => $request->brgy_id,
+            ]);
 
-            return redirect()->back()->with('status', 'Change Password Successfully');
+            return redirect()->back()->with('status', 'Change Contacts Successfully');
         
+    }
+
+    public function updateinfo(Request $request)
+    {
+        member::where('id', Auth::user()->member->id)
+            ->update([
+                'birthday' => $request->bday, 
+                'gender' => $request->gender,
+            ]);
+
+            return redirect()->back()->with('status', 'Updated Information Successfully');
     }
 }

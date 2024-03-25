@@ -595,6 +595,15 @@ background-position: center center;">
                       console.log(response);
                        var len = 0;
                        if(response.success){
+                          var batch = response.batch;
+                          console.log(batch)
+                          if(batch  == "")
+                          {
+                            batch = 1
+                          }
+                          else {
+                            // batch = batch + 1;
+                          }
                           var option = "";
                                       option += "<div class='card-header' style='text-align: center; font-weight: bold; color: white;'>"
                                       option += response.task.task_name 
@@ -606,6 +615,20 @@ background-position: center center;">
                                       option += "</div>"  
                                       option += "<div class='card-body'>"
                                       option += "<button class='btn btn-primary' id='claim' style='display: none'>Claim</button>"
+                                      option += "</div>"  
+                                      option += "<div class='card-footer'>"
+                                      for(var x = 1; x <= 10; x++)
+                                      {
+                                        if(x == batch)
+                                        {
+                                            option += "<button class='btn btn-primary mr-3 mb-3'>" + x + "</button>"
+                                        }
+                                        else
+                                        {
+                                            option += "<button disabled class='btn btn-primary mr-3 mb-3'>" + x + "</button>"
+                                        }
+                                      }
+                                      
                                       option += "</div>"  
 
 
@@ -632,6 +655,8 @@ background-position: center center;">
                                                   {
                                                     var claim = document.getElementById('claim');
                                                     claim.style.removeProperty("display");
+                                                    // $('#batch').empty();
+                                                    // $('#batch').val(response.batch + 1);
                                                     claimIncome(response.batch)
                                                   } else {
                                                     // $('#batch').val(response.batch);

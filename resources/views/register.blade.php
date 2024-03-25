@@ -23,7 +23,7 @@
       /* margin: 100px auto; */
       /* font-family: Raleway; */
       /* padding: 40px; */
-      width: 70%;
+      width: 100%;
       min-width: 300px;
     }
     
@@ -86,7 +86,7 @@
 <body class="hold-transition login-page" style="background-image: url('login_bg2.jpg'); background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
     background-position: center center;">
-<div class="login-box">
+<div class="login-box" style="width: 500px;">
   <!-- /.login-logo -->
   @if ($errors->any())
     <div class="alert alert-danger">
@@ -120,8 +120,111 @@
 
       <form id="regForm" method="POST" action="{{ route('addmember') }}">
         {{ csrf_field() }}
-        <!-- One "tab" for each step in the form: -->
-        <div class="tab">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="first_name" placeholder="First Name">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="username" placeholder="Username">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" name="password" placeholder="Password">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="sponsor" placeholder="Sponsor">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="upline" placeholder="Upline">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" name="email" placeholder="Email">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group mb-3">
+              <select name="position" id="position" class="form-control">
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        
+      
+        <div class="row">
+          <div class="col-8">
+            <!-- <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div> -->
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" name="sign_in" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+        {{-- <div class="tab">
             <h2 style="text-align: center; color: white;">Account Information</h2>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="username" placeholder="Username">
@@ -274,14 +377,14 @@
             <button type="button" class="btn btn-danger btn-md" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
             <button type="button" class="btn btn-primary btn-md" id="nextBtn" onclick="nextPrev(1)">Next</button>
           </div>
-        </div>
+        </div> --}}
         <!-- Circles which indicates the steps of the form: -->
-        <div style="text-align:center;margin-top:40px;">
+        {{-- <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
           <span class="step"></span>
           <span class="step"></span>
           <span class="step"></span>
-        </div>
+        </div> --}}
       </form>
       
     

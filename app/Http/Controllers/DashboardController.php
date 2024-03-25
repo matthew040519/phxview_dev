@@ -57,13 +57,17 @@ class DashboardController extends Controller
 
         $date = Carbon::now()->timezone('Asia/Manila')->format('Y-m-d');
 
+        $batch = 1;
+
         $member_task = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date])->orderBy('id', 'DESC')->limit(1)->first();
 
         $count_task = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date])->count();
 
+        $max_claim = memberincome::where(['member_id' => Auth::user()->id, 'tdate' => $date])->max('batch');
+
         $max_count = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date, 'batch' => 10])->max('count');
 
-        if($count_task > 0 )
+        if($count_task > 0)
         {
             if($member_task->batch == 10 && $max_count == 3)
             {
@@ -88,11 +92,23 @@ class DashboardController extends Controller
             $task = task::limit(1)->first();
         }
 
+        if($max_claim == NULL)
+        {
+            $batch = 1;
+        }
+        else
+        {
+            $batch = $max_claim + 1;
+        }
+
+       
+
         $params['task'] = $task;
 
         return response()->json([
             'success' => true,
             'task' => $task,
+            'batch' => $batch
         ], 200);
     }
 

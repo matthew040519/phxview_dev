@@ -104,7 +104,18 @@ class LoginController extends Controller
 
     public function register()
     {
+        $username = Request()->username;
+
         $params = [];
+        if($username != "")
+        {
+            $params['username'] = $username;
+        }
+        else
+        {
+            $params['username'] = NULL;
+        }
+        
         $params['province'] = Province::orderBy('name','asc')->get();
 
         return view('register')->with('params', $params);

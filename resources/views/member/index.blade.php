@@ -105,6 +105,7 @@ background-position: center center;">
                   
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+                <a href="/member/p2p-transaction" class="small-box-footer">Transfer</i></a>
               </div>
               
               <!-- /.info-box-content -->
@@ -122,6 +123,7 @@ background-position: center center;">
                     
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+                <a href="/member/withdraw" class="small-box-footer">Transfer</i></a>
               </div>
               
               <!-- /.info-box-content -->
@@ -621,11 +623,11 @@ background-position: center center;">
                                       {
                                         if(x == batch)
                                         {
-                                            option += "<button class='btn btn-primary mr-3 mb-3'>" + x + "</button>"
+                                            option += "<button style='background-color: #FFD700; color: black' class='btn btn-primary mr-3 mb-3'>Click " + x + "</button>"
                                         }
                                         else
                                         {
-                                            option += "<button disabled class='btn btn-primary mr-3 mb-3'>" + x + "</button>"
+                                            option += "<button disabled class='btn btn-primary mr-3 mb-3'>Click " + x + "</button>"
                                         }
                                       }
                                       

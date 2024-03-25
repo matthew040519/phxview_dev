@@ -33,7 +33,7 @@ class ProfileController extends Controller
             $params['citiesmunicipalities'] = citiesmunicipalities::all();
         }        
 
-        $params['member_package'] = member_package::selectRaw('*, DATEDIFF(DATE_ADD(tdate, INTERVAL 3 MONTH),  NOW()) as date_expire')->where(['username' => Auth::user()->member->username, 'active' => 1])->first();
+        $params['member_package'] = member_package::selectRaw('*, DATEDIFF(DATE_ADD(tdate, INTERVAL 5 MONTH),  NOW()) as date_expire')->where(['username' => Auth::user()->member->username, 'active' => 1])->first();
 
 
         return view('member.profile')->with('params', $params);
@@ -71,6 +71,8 @@ class ProfileController extends Controller
             ->update([
                 'birthday' => $request->bday, 
                 'gender' => $request->gender,
+                'email' => $request->email, 
+                'contact_number' => $request->contact_number,
             ]);
 
             return redirect()->back()->with('status', 'Updated Information Successfully');

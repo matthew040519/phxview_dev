@@ -70,6 +70,8 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/addpackage',[PackageController::class, 'memberpackage']);
             Route::get('/genealogy',[TreeController::class, 'genealogy']);
             Route::get('/market',[MarketController::class, 'market']);
+            Route::get('/cart',[MarketController::class, 'cart']);
+            Route::post('/add-to-cart',[MarketController::class, 'addtocart'])->name('addtocart');
             Route::get('/products',[MarketController::class, 'products']);
             Route::get('/profile',[ProfileController::class, 'profile']);
             Route::get('/convert-report',[ReportController::class, 'convert']);

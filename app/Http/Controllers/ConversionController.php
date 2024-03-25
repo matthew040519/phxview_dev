@@ -19,9 +19,9 @@ class ConversionController extends Controller
 
         if($request->convert <= $request->balance)
         {
-            if($request->convert % 5 == 0)
+            if($request->convert % 15 == 0)
             {
-                $phxToken = $request->convert / 5;
+                $phxToken = $request->convert / 15;
 
                 conversion::create([
                     'member_id' => Auth::user()->id,
@@ -57,7 +57,7 @@ class ConversionController extends Controller
             // {
                 if($request->convert_to == 1)
                 {
-                    $azntToken = $request->convert / 20;
+                    $azntToken = $request->convert / 10;
 
                     conversion::create([
                         'member_id' => Auth::user()->id,

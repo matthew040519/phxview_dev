@@ -26,6 +26,12 @@
   <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    table, tr, td, th{
+      border: 0.5px;
+      border-collapse: collapse;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-collapse layout-top-nav">
 <div class="wrapper">
@@ -84,6 +90,7 @@ background-position: center center; color: white;">
                   <p>{{ $params['products']->details }}</p>
     
                   <hr>
+
                   {{-- <h4>Available Colors</h4> --}}
                   {{-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-default text-center active">
@@ -147,60 +154,80 @@ background-position: center center; color: white;">
                   </div> --}}
     
                   {{-- <div class="bg-gray py-2 px-3 mt-4"> --}}
+                    <form action="{{ route('addtocart') }}" method="POST">
+                      {{ csrf_field() }}
+                      <input type="hidden" name="product_id" value="{{ $params['products']->id }}">
+                      <input type="hidden" name="category_id" value="{{ $params['products']->category->id }}">
                     @if($params['products']->category->id == 1)
-                    <div class="row">
-                      <div class="col-md-12">
-                        <h3 for="">Sizes</h3>
-                      </div>
-                      <div class="row">
-                        
-                        <div class="col-sm-12">
-                          <!-- radio -->
+                    <table>
+                      <tr>
+                        <th><h3 for="">Sizes</h3></th>
+                      </tr>
+                      <tr>
+                        <td>
                           <div class="form-group clearfix">
                             <div class="icheck-primary d-inline">
-                              <input type="radio" value="S" id="radioPrimary1" name="r1">
+                              <input type="radio" value="S" id="radioPrimary1" name="size">
                               <label for="radioPrimary1">
                                 Small
                               </label>
                             </div>
                             <div class="icheck-primary d-inline">
-                              <input type="radio" value="M" id="radioPrimary2" name="r1">
+                              <input type="radio" value="M" id="radioPrimary2" name="size">
                               <label for="radioPrimary2">
                                 Medium
                               </label>
                             </div>
                             <div class="icheck-primary d-inline">
-                              <input type="radio" value="L" id="radioPrimary3" name="r1">
+                              <input type="radio" value="L" id="radioPrimary3" name="size">
                               <label for="radioPrimary3">
                                 Large
                               </label>
                             </div>
                             <div class="icheck-primary d-inline">
-                              <input type="radio" value="XL" id="radioPrimary3" name="r1">
+                              <input type="radio" value="XL" id="radioPrimary3" name="size">
                               <label for="radioPrimary3">
                                 X-Large
                               </label>
                             </div>
                           </div>
-                        </div>
+                        </td>
+                      </tr>
+                    </table>
+                    <hr>
+                    @else
+                    <input type="hidden" name="size" value="">
+                    @endif
+                    <div class="row">
+                      <div class="col-md-5">
+                        <h3> &#8369; {{ $params['products']->price }}</h3>
+                        <input type="hidden" name="price" value="{{ $params['products']->price }}">
                       </div>
                     </div>
                     <hr>
-                    @endif
-                    <h2 class="mb-0">
-                      &#8369; {{ $params['products']->price }}
-                    </h2>
-                    <h4 class="mt-0">
-                      {{-- <small>Ex Tax: $80.00 </small> --}}
-                    </h4>
-                  {{-- </div> --}}
+                    <div class="row">
+                      <div class="col-md-12"  >
+                        <div style="display: inline-flex">
+                          <div>
+                            <h3 style="margin-right: 15px;">Qty </h3>
+                          </div>
+                          <button style="margin-right: 10px; height: 100%" onclick="plusClick()" class="btn btn-info btn-sm">+</button>
+                          <input style="height: 32px; width: 100px;" name="qty" type="number" id="qty" class="form-control">
+                          <button style="margin-left: 10px; height: 100%" onclick="minusClick()" class="btn btn-info btn-sm">-</button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    
                     <hr>
                   <div class="mt-4">
-                    <div class="btn btn-primary btn-lg btn-flat">
+                    {{-- <div class="btn btn-primary btn-lg btn-flat">
                       <i class="fas fa-cart-plus fa-lg mr-2"></i> 
                       Add to Cart
-                    </div>
-    
+                    </div> --}}
+                    <button type="submit" class="btn btn-primary btn-lg btn-flat"><i class="fas fa-cart-plus fa-lg mr-2"></i> 
+                      Add to Cart</button>
+                    </form>
                     <div class="btn btn-default btn-lg btn-flat">
                       <i class="fas fa-heart fa-lg mr-2"></i> 
                       Add to Wishlist
@@ -274,5 +301,16 @@ background-position: center center; color: white;">
 <script src="../dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<script>
+  function plusClick() {
+  money = +document.getElementById('qty').value
+  document.getElementById('qty').value = Math.max(money + 1);
+}
+
+function minusClick() {
+  money = +document.getElementById('qty').value
+  document.getElementById('qty').value = Math.max(money - 1);
+}
+</script>
 </body>
 </html>

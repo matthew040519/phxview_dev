@@ -132,6 +132,14 @@ background-position: center center">
                                 <input type="text" readonly class="form-control" value="{{ Auth::user()->member->last_name }}" name="last_name" id="inputName" placeholder="last Name">
                             </div>
                             <div class="col-md-6">
+                              <label for="inputName" class=" col-form-label">Email</label>
+                              <input type="text" class="form-control" value="{{ Auth::user()->member->email }}" name="email" id="inputName" placeholder="Username">
+                          </div>
+                          <div class="col-md-6">
+                            <label for="inputName" class=" col-form-label">Contact Number</label>
+                            <input type="text" class="form-control" value="{{ Auth::user()->member->contact_number }}" name="contact_number" id="inputName" placeholder="Username">
+                        </div>
+                            <div class="col-md-6">
                                 <label for="inputName" class=" col-form-label">Birthday</label>
                                 <input type="date" class="form-control" value="{{ Auth::user()->member->birthday }}" name="bday" id="inputName" placeholder="Username">
                             </div>
@@ -210,7 +218,6 @@ background-position: center center">
                     <!-- /.tab-pane -->
   
                     <div class="tab-pane" id="settings">
-                      <form class="form-horizontal">
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="inputName" class="col-form-label">Sponsor</label>
@@ -224,9 +231,20 @@ background-position: center center">
                                     <input type="upline" readonly value="{{ Auth::user()->member->upline }}" class="form-control" id="inputEmail" placeholder="Upline">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                              <label for="inputName" class=" col-form-label">Referall Link</label>
+                              <div class="input-group">
+                                <div class="custom-file">
+                                  <input type="text" name="link" id="referal_link" readonly class="form-control" value="https://phxview.online/register?username={{ Auth::user()->member->username }}" name="thron_wallet">
+                                
+                                </div>
+                                <div class="input-group-append">
+                                  <button class="btn btn-info btn-sm" id="copy">Copy</button>
+                                </div>
+                              </div>
+                            </div>
                           
                         </div>
-                      </form>
                     </div>
                     <!-- /.tab-pane -->
                   </div>
@@ -244,6 +262,33 @@ background-position: center center">
   <script src="../plugins/jquery/jquery.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
+
+      $('#copy').on('click', function() {
+
+        var copyText = document.getElementById("referal_link");
+
+        console.log(copyText);
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); 
+
+        navigator.clipboard.writeText(copyText.value);
+
+        alert("Copied the text: " + copyText.value);
+
+      });
+      // function myFunction() {
+
+      //   var copyText = document.getElementById("referal_link");
+
+      //   copyText.select();
+      //   copyText.setSelectionRange(0, 99999); 
+
+      //   navigator.clipboard.writeText(copyText.value);
+
+      //   alert("Copied the text: " + copyText.value);
+      // }
+
       $('#province_id').on('change', function() {
             var province_id = $('#province_id').val();
                 $.ajax({

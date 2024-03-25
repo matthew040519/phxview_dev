@@ -163,7 +163,11 @@
           </div>
           <div class="col-sm-6">
             <div class="input-group mb-3">
+              @if($params['username'] != NULL)
+              <input type="text" class="form-control" name="sponsor" readonly value="{{ $params['username']; }}" placeholder="Sponsor">
+              @else
               <input type="text" class="form-control" name="sponsor" placeholder="Sponsor">
+              @endif
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-user"></span>

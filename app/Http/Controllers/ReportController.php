@@ -18,7 +18,25 @@ class ReportController extends Controller
     public function convert()
     {
         $params = [];
-        $params['convert'] = conversion::where(['member_id' => Auth::user()->id])->where('withdraw', ">", 0)->whereIn('type', array('PHX TOKEN', 'E-Wallet', 'AZNT TOKEN'))->orderBy('date', 'ASC')->get();
+        $search = request()->search;
+        // dd($search);
+        if($search == "PHXTOKEN")
+        {
+            $params['convert'] = conversion::where(['member_id' => Auth::user()->id])->where('withdraw', ">", 0)->where('type', "PHX TOKEN")->orderBy('date', 'ASC')->get();
+        }
+        else if($search == "E-Wallet")
+        {
+            $params['convert'] = conversion::where(['member_id' => Auth::user()->id])->where('withdraw', ">", 0)->where('type', $search)->orderBy('date', 'ASC')->get();
+        }
+        else if($search == "AZNTTOKEN")
+        {
+            $params['convert'] = conversion::where(['member_id' => Auth::user()->id])->where('withdraw', ">", 0)->where('type', "AZNT TOKEN")->orderBy('date', 'ASC')->get();
+        }
+        else
+        {
+            $params['convert'] = conversion::where(['member_id' => Auth::user()->id])->where('withdraw', ">", 0)->whereIn('type', array('PHX TOKEN', 'E-Wallet', 'AZNT TOKEN'))->orderBy('date', 'ASC')->get();
+        }
+        
 
         return view('member.convertreport')->with('params', $params);
     }
@@ -37,6 +55,14 @@ class ReportController extends Controller
         $params['sponsor'] = directinvite::where(['sponsor' => Auth::user()->member->username, 'type' => 0])->get();
 
         return view('member.directsponsor')->with('params', $params);
+    }
+
+    public function unilevelreports()
+    {
+        $params = [];
+        $params['unilevel'] = unilevel::where(['member_id' => Auth::user()->id])->get();
+
+        return view('member.unilevelreports')->with('params', $params);
     }
 
     public function unilevel()

@@ -13,6 +13,12 @@
       height: 300px;
     }
   }
+  div.sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 </style>
 <div class="content-wrapper" style="background-image: url('../login_bg2.jpg'); background-size:     cover;                      
 background-repeat:   no-repeat;
@@ -36,9 +42,14 @@ background-position: center center;">
     <!-- /.content-header -->
 
     <!-- Main content -->
+    
     <section class="content">
-      <div class="container-fluid"> 
+      <div class="sticky">
         <img src="../banner2.png" id="banner" class="img-thumbnail" style="width: 100%; text-align: center; " alt="">
+      </div>
+      <div class="container-fluid"> 
+        
+        
         <!-- Small boxes (Stat box) -->
         @if($params['member_package'] != NULL)
         <div class="card" id="task" style=" background: transparent; backdrop-filter: blur(3px)">
@@ -62,7 +73,7 @@ background-position: center center;">
         @endif
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><img height="150px" src="../images/phxcoin.ico" alt=""></span>
 
               <div class="info-box-content">
@@ -70,7 +81,10 @@ background-position: center center;">
                 <h3 class="info-box-number" id="phxtoken">
                   
                 </h3>
-                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a>
+                <div style="display: flex;">
+                  <a href="#" style="color: #FFD700; font-weight: bold; font-size: 12px; margin-right: 10px;" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a>
+                  <a href="/member/convert-report?search=PHXTOKEN" class="small-box-footer" style="color: #FFD700; font-weight: bold;  font-size: 12px;">History</i></a>
+                </div>
               </div>
               
               <!-- /.info-box-content -->
@@ -79,7 +93,7 @@ background-position: center center;">
             <!-- /.info-box -->
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><img height="120px" src="../images/aznt.ico" alt=""></span>
 
               <div class="info-box-content">
@@ -87,7 +101,7 @@ background-position: center center;">
                 <h3 class="info-box-number" id="aznt">
                   
                 </h3>
-                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+                <a href="#" class="small-box-footer" style="color: #FFD700; font-weight: bold;" data-toggle="modal" data-target="#modal-withdraw">Withdraw</i></a>
               </div>
               
               <!-- /.info-box-content -->
@@ -96,7 +110,7 @@ background-position: center center;">
             <!-- /.info-box -->
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-wallet"></i></span>
 
               <div class="info-box-content">
@@ -105,7 +119,7 @@ background-position: center center;">
                   
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
-                <a href="/member/p2p-transaction" class="small-box-footer">Transfer</i></a>
+                <a href="/member/convert-report?search=E-Wallet" style="color: #FFD700; font-weight: bold;" class="small-box-footer">History</i></a>
               </div>
               
               <!-- /.info-box-content -->
@@ -114,7 +128,7 @@ background-position: center center;">
             <!-- /.info-box -->
           </div>
           <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-credit-card"></i></span>
 
               <div class="info-box-content">
@@ -122,8 +136,8 @@ background-position: center center;">
                 <h3 class="info-box-number" id="withdrawal">
                     
                 </h3>
-                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
-                <a href="/member/withdraw" class="small-box-footer">Transfer</i></a>
+                <a href="/member/withdraw" class="small-box-footer" style="color: #FFD700; font-weight: bold;">History</i></a>
+                {{-- <a href="/member/withdraw" class="small-box-footer">Transfer</i></a> --}}
               </div>
               
               <!-- /.info-box-content -->
@@ -146,16 +160,19 @@ background-position: center center;">
                       <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                     </div>
               @endif
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-coins"></i></span>
 
               <div class="info-box-content">
-                <p class="info-box-text">DC Token</p>
+                <p class="info-box-text">Daily Rewards</p>
                 <h3 class="info-box-number" id="rewardsWallet">
                   
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
-                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-default">Transfer</a>
+                <div style="display: flex; margin-top: -15px;">
+                  <a href="#" class="small-box-footer" style="color: #FFD700; font-weight: bold; font-size: 12px; margin-right: 10px;" data-toggle="modal" data-target="#modal-default">Transfer</a>
+                  <a href="/member/claim-report" class="small-box-footer" style="color: #FFD700; font-weight: bold;  font-size: 12px;">History</i></a>
+                </div>
               </div>
               
               <!-- /.info-box-content -->
@@ -165,7 +182,7 @@ background-position: center center;">
           </div>
           <div class="col-12 col-sm-6 col-md-3">
            
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-users"></i></span>
 
               <div class="info-box-content">
@@ -173,7 +190,11 @@ background-position: center center;">
                 <h3 class="info-box-number" id="dr">
                   
                 </h3>
-                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-ds">Transfer</i></a>
+                <div style="display: flex; margin-top: -15px;">
+                  <a href="#" class="small-box-footer" style="color: #FFD700; font-weight: bold; font-size: 12px; margin-right: 10px;" data-toggle="modal" data-target="#modal-ds">Transfer</i></a>
+                  <a href="/member/direct-sponsor-report" class="small-box-footer" style="color: #FFD700; font-weight: bold;  font-size: 12px;">History</i></a>
+                </div>
+                
               </div>
               
               <!-- /.info-box-content -->
@@ -183,7 +204,7 @@ background-position: center center;">
           </div>
           <div class="col-12 col-sm-6 col-md-3">
             
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-network-wired"></i></span>
 
               <div class="info-box-content">
@@ -191,7 +212,10 @@ background-position: center center;">
                 <h3 class="info-box-number" id="unilevel">
                   
                 </h3>
-                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-unilevel">Transfer</i></a>
+                <div style="display: flex; margin-top: -15px;">
+                  <a href="#" class="small-box-footer" style="color: #FFD700; font-weight: bold; font-size: 12px; margin-right: 10px" data-toggle="modal" data-target="#modal-unilevel">Transfer</i></a>
+                  <a href="/member/unilevel-report" class="small-box-footer" style="color: #FFD700; font-weight: bold;  font-size: 12px;" >History</i></a>
+                </div>
               </div>
               
               <!-- /.info-box-content -->
@@ -201,7 +225,7 @@ background-position: center center;">
           </div>
           <div class="col-12 col-sm-6 col-md-3">
            
-            <div class="info-box" style="height: 143px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
+            <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
               <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-users"></i></span>
 
               <div class="info-box-content">
@@ -209,7 +233,7 @@ background-position: center center;">
                 <h3 class="info-box-number" >
                   0
                 </h3>
-                {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
+                <a href="/member/genealogy?username={{ Auth::user()->member->username }}" class="small-box-footer" style="color: #FFD700; font-weight: bold;">Genealogy</i></a>
               </div>
               
               <!-- /.info-box-content -->
@@ -438,15 +462,8 @@ background-position: center center;">
               {{ csrf_field() }}
               <div class="row">
                   <div class="col-md-12">
-                      <label for="">Convert To: </label>
-                      <select name="convert_to" id="" class="form-control">
-                        <option value="1">AZNT</option>
-                        <option value="2">E - Market</option>
-                      </select>
-                  </div>
-                  <div class="col-md-12">
                       <label for="">Conversion of PHX Token to AZNT</label>
-                      <input type="text" readonly name="conversion" value="20:1" class="form-control">
+                      <input type="text" readonly name="conversion" value="10:1" class="form-control">
                   </div>
                   <div class="col-md-12">
                     <label for="">Remaining Balance</label>
@@ -485,7 +502,7 @@ background-position: center center;">
               <div class="row">
                   <div class="col-md-12">
                       <label for="">Convertion of Rewards Wallet to PHX Token</label>
-                      <input type="text" readonly name="conversion" value="5:1" class="form-control">
+                      <input type="text" readonly name="conversion" value="15:1" class="form-control">
                   </div>
                   <div class="col-md-12">
                     <label for="">Remaining Balance</label>
@@ -494,6 +511,37 @@ background-position: center center;">
                   <div class="col-md-12">
                       <label for="">Convert</label>
                       <input type="number" required name="convert" class="form-control">
+                  </div>
+              </div>
+            
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" name="save" class="btn btn-primary">Confirm</button>
+          </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="modal-withdraw">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Withdraw</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="{{ route('addwithdrawal') }}">
+              {{ csrf_field() }}
+              <div class="row">
+                  <div class="col-md-12">
+                      <label for="">Amount to withdraw</label>
+                      <input type="text" required name="withdraw" class="form-control">
                   </div>
               </div>
             
@@ -724,7 +772,10 @@ background-position: center center;">
                       console.log(response);
                        var len = 0;
                        if(response.success){
+                          
                           $('#rewardsWallet').text(response.total_income);
+                          var extension = "<p style='font-size: 12px;'>DC TOKEN</p>";
+                          $("#rewardsWallet").append(extension);  
                           $('#balance').val(response.total_income);
                           
                         }
@@ -775,8 +826,11 @@ background-position: center center;">
                                   $('#e-wallet').text(response.emarket);
                                   $('#withdrawal').text(response.withdrawal);
                                   $('#dr').text(response.sponsor);
+                                  var extension = "<p style='font-size: 12px;'>DC TOKEN</p>";
+                                  $("#dr").append(extension);  
                                   $('#dr1').val(response.sponsor);
                                   $('#unilevel').text(response.unilevel);
+                                  $("#unilevel").append(extension);  
                                   $('#unilevel1').val(response.unilevel);
                               }
                             }

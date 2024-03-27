@@ -76,6 +76,7 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/profile',[ProfileController::class, 'profile']);
             Route::get('/convert-report',[ReportController::class, 'convert']);
             Route::get('/claim-report',[ReportController::class, 'claimreport']);
+            Route::get('/unilevel-report',[ReportController::class, 'unilevelreports']);
             Route::get('/unilevel',[ReportController::class, 'unilevel']);
             Route::get('/games',[DashboardController::class, 'games']);
             Route::post('/ds-to-dc',[DashboardController::class, 'ds_to_dc'])->name('ds_to_dc');

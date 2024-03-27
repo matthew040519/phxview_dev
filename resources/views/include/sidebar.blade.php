@@ -189,6 +189,12 @@
                       <p>P2P Transaction</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/member/unilevel-report" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Unilevel Transaction</p>
+                    </a>
+                  </li>
                 </ul>
                 
               </li>  

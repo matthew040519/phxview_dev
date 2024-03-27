@@ -19,8 +19,8 @@ class ConversionController extends Controller
 
         if($request->convert <= $request->balance)
         {
-            if($request->convert % 15 == 0)
-            {
+            // if($request->convert % 15 == 0)
+            // {
                 $phxToken = $request->convert / 15;
 
                 conversion::create([
@@ -31,11 +31,11 @@ class ConversionController extends Controller
                 ]);
 
                 return redirect()->back()->with('status', 'Transfer Successfully!')->with('color', 'success');
-            }
-            else
-            {
-                return redirect()->back()->with('status', 'Not Divisible by 5!')->with('color', 'danger');
-            }
+            // }
+            // else
+            // {
+            //     return redirect()->back()->with('status', 'Not Divisible by 15!')->with('color', 'danger');
+            // }
             
         } else {
             return redirect()->back()->with('status', 'Insufficient Balance!')->with('color', 'danger');
@@ -46,7 +46,6 @@ class ConversionController extends Controller
     public function convertToAznt(Request $request)
     {
         $validated = $request->validate([
-            'convert_to' => 'required',
             'balance' => 'required',
             'convert' => 'required',
         ]);
@@ -55,25 +54,25 @@ class ConversionController extends Controller
         {
             // if($request->convert % 20 == 0)
             // {
-                if($request->convert_to == 1)
-                {
-                    $azntToken = $request->convert / 10;
+                // if($request->convert_to == 1)
+                // {
+                    $azntToken = ($request->convert * 0.5) / 10;
 
                     conversion::create([
                         'member_id' => Auth::user()->id,
-                        'withdraw' => $request->convert,
+                        'withdraw' => ($request->convert / 2),
                         'conversion' => $azntToken, 
                         'type' => 'AZNT TOKEN'
                     ]);
-                }
-                else {
+                // }
+                // else {
                     conversion::create([
                         'member_id' => Auth::user()->id,
-                        'withdraw' => $request->convert,
-                        'conversion' => $request->convert, 
+                        'withdraw' => ($request->convert / 2),
+                        'conversion' => ($request->convert * 0.5), 
                         'type' => 'E-Wallet'
                     ]);
-                }
+                // }
                
 
                 return redirect()->back()->with('status_aznt', 'Transfer Successfully!')->with('color', 'success');

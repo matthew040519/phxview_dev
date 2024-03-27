@@ -57,8 +57,8 @@ background-position: center center; color: white;">
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Market</li>
+              <li class="breadcrumb-item"><a href="/member/memberdashboard">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/member/market">Market</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

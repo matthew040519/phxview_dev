@@ -63,7 +63,7 @@ class DashboardController extends Controller
 
         $count_task = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date])->count();
 
-        $max_claim = memberincome::where(['member_id' => Auth::user()->id, 'tdate' => $date])->max('batch');
+        $max_claim = memberincome::where(['member_id' => Auth::user()->id, 'tdate' => $date, 'type' => 0])->max('batch');
 
         $max_count = membertask::where(['member_id' => Auth::user()->id, 'tdate' => $date, 'batch' => 10])->max('count');
 

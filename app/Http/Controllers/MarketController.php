@@ -10,6 +10,7 @@ use App\Models\conversion;
 use App\Models\producttransaction;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MarketController extends Controller
 {
@@ -24,7 +25,7 @@ class MarketController extends Controller
             // dd(Auth::user()->id);
             
             $conversion = conversion::where(['type' => 'E-Wallet', 'member_id' => Auth::user()->id])->sum('conversion');
-            $count_cart = producttransaction::where('user_id', Auth::user()->id)->count('user_id');
+            $count_cart = producttransaction::where('user_id', Auth::user()->id)->groupBy('product_id', 'category_id')->count('user_id');
 
             $this->convert = $conversion;
             $this->pt = $count_cart;
@@ -37,9 +38,15 @@ class MarketController extends Controller
     public function cart()
     {
         $params = [];
+        $action = request()->action;
+        $id = request()->id;
+        if($action != "" && $id != "")
+        {
+            producttransaction::where('id', $id)->delete();
+        }
         $params['convert'] = $this->convert;
         $params['count_cart'] = $this->pt;
-        $params['cart'] = producttransaction::where('user_id', $this->user_id)->get();
+        $params['cart'] = producttransaction::select(DB::raw('sum(qty) as qty, size, max(price) as price, product_id, category_id'))->where('user_id', $this->user_id)->groupBy('size', 'product_id', 'category_id')->get();
         $params['sum'] = 0;
         return view('member.cart')->with('params', $params);
     }

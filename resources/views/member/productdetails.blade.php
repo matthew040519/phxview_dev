@@ -211,9 +211,9 @@ background-position: center center; color: white;">
                           <div>
                             <h3 style="margin-right: 15px;">Qty </h3>
                           </div>
-                          <button style="margin-right: 10px; height: 100%" onclick="plusClick()" class="btn btn-info btn-sm">+</button>
+                          <button type="button" style="margin-right: 10px; height: 100%" onclick="plusClick()" class="btn btn-info btn-sm">+</button>
                           <input style="height: 32px; width: 100px;" name="qty" type="number" id="qty" class="form-control">
-                          <button style="margin-left: 10px; height: 100%" onclick="minusClick()" class="btn btn-info btn-sm">-</button>
+                          <button type="button" style="margin-left: 10px; height: 100%" onclick="minusClick()" class="btn btn-info btn-sm">-</button>
                         </div>
                         
                       </div>

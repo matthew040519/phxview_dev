@@ -96,6 +96,7 @@ background-position: center center; color: white;">
                             <th>Category</th>
                             <th>Subtotal</th>
                             <th>Total</th>
+                            <th></th>
                           </tr>
                           </thead>
                           <tbody>
@@ -106,8 +107,31 @@ background-position: center center; color: white;">
                                     <td>{{ $cart->category->category_name }}</td>
                                     <td>&#8369; {{ $cart->price }}</td>
                                     <td>&#8369; {{ $cart->qty * $cart->price }}</td>
+                                    <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-sm{{ $cart->id }}">X</button></td>
                                     <input type="hidden" value="{{ $params['sum'] += $cart->qty * $cart->price }}">
                             </tr>
+                            <div class="modal fade" id="modal-sm{{ $cart->id }}">
+                              <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">Confirmation</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p style="text-align: center;">Do you want to delete this item?</p>
+                                  </div>
+                                  <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                    <a class="btn btn-danger" href="/member/cart?action=delete&id={{ $cart->id }}">Delete</a>
+                                  </div>
+                                </div>
+                                <!-- /.modal-content -->
+                              </div>
+                              <!-- /.modal-dialog -->
+                            </div>
                           @endforeach
                           </tbody>
                         </table>
@@ -175,6 +199,7 @@ background-position: center center; color: white;">
                   <!-- /.invoice -->
                 </div><!-- /.col -->
               </div>
+              
         </div>
     </section>
   </div>

@@ -116,7 +116,7 @@ background-position: center center;">
               <div class="info-box-content">
                 <p class="info-box-text">E-Wallet</p>
                 <h3 class="info-box-number" id="e-wallet">
-                  
+                  &#8369; 
                 </h3>
                 {{-- <a href="#" class="small-box-footer" data-toggle="modal" data-target="#modal-phxtoken">Convert</i></a> --}}
                 <a href="/member/convert-report?search=E-Wallet" style="color: #FFD700; font-weight: bold;" class="small-box-footer">History</i></a>
@@ -823,7 +823,10 @@ background-position: center center;">
                                   $('#phxtoken').text(response.conversion);
                                   $('#phxtoken_bal').val(response.conversion);
                                   $('#aznt').text(response.aznt);
-                                  $('#e-wallet').text(response.emarket);
+                                  var peso = "&#8369;";
+                                  var emarket = response.emarket;
+                                  $("#e-wallet").append(peso + " " + emarket);  
+                                  
                                   $('#withdrawal').text(response.withdrawal);
                                   $('#dr').text(response.sponsor);
                                   var extension = "<p style='font-size: 12px;'>DC TOKEN</p>";

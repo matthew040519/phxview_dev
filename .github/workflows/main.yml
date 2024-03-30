@@ -1,16 +1,17 @@
-on: push
-name: ? Deploy website on push
-branches:
+name: Deploy Laravel 10 Project on push
+on:
+  push:
+    branches:
       - master
 jobs:
   web-deploy:
-    name: ? Deploy
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: ? Get latest code
+    - name: Get latest code
       uses: actions/checkout@v3
     
-    - name: ? Sync files
+    - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: ftp.phxview.online

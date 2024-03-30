@@ -28,4 +28,4 @@ jobs:
           username: dev@dev.phxview.online
           password: phxview2024
           server-dir: /
-          protocol: ftps
+          protocol: ftp

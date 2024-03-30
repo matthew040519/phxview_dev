@@ -27,7 +27,7 @@ jobs:
           username: dev@dev.phxview.online
           password: phxview2024
           server-dir: /
-          protocol: ftps-legacy
+          protocol: ftp
 # on: push
 # name: 🚀 Deploy website on push
 # branches:

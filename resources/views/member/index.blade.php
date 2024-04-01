@@ -14,10 +14,10 @@
     }
   }
   div.sticky{
-    position: -webkit-sticky;
+    /* position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 1; */
   }
 </style>
 <div class="content-wrapper" style="background-image: url('../login_bg2.jpg'); background-size:     cover;                      

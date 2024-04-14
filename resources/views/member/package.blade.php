@@ -63,12 +63,12 @@ background-position: center center; color: white;">
                                       </div>
                                   </div>
                               @endif
-                                <h5 style="font-weight: bold;">{{ $package->package_name }}</h5>
+                                <h5 style="font-weight: bold; font-size: 32px;">{{ $package->package_name }}</h5>
                               
-                                <p>{{ $package->click }} clicks / 37 videos <br> <p>{{ ($package->dc_token * $package->click) * 150 }} DC TOKEN / 150 days<br><p>{{ $package->dr }} % Direct Referall POINTS
-                                  <br><p>{{ $package->dc_token }} Per Click <br>
+                                <p style="font-size: 24px;">{{ $package->click }} clicks / 37 videos <br> <p style="font-size: 24px;">{{ ($package->dc_token * $package->click) * 150 }} DC TOKEN / 150 days<br><p style="font-size: 24px;">{{ $package->dr }} % Direct Referall POINTS
+                                  <br><p style="font-size: 24px;">{{ $package->dc_token }} Per Click <br>
                                   @if($params['member_package']->package_id == $package->id)
-                                  <label for="">Days left: {{ $params['member_package']->date_expire  }}</label>
+                                  <label for="" style="font-size: 24px;">Days left: {{ $params['member_package']->date_expire  }}</label>
                                 @endif
                               </div>
                             <div class="card-footer" >

@@ -2,6 +2,12 @@
 
 @section('content')
 <style>
+  #myVideo{
+    height: 400px;
+  }
+  #banner{
+    height: 300px;
+  }
   @media only screen and (max-width: 600px) {
     #banner{
       object-fit: cover;
@@ -18,6 +24,9 @@
     position: sticky;
     top: 0;
     z-index: 1; */
+  }
+  #myVideo{
+    height: auto;
   }
 </style>
 <div class="content-wrapper" style="background-image: url('../login_bg2.jpg'); background-size:     cover;                      
@@ -52,6 +61,15 @@ background-position: center center;">
         
         <!-- Small boxes (Stat box) -->
         @if($params['member_package'] != NULL)
+        <div class="card" id="qoute" style="background-image: linear-gradient(#04619F, #000000)">
+          
+          <div class="card-body">
+            <blockquote>
+              <p> <button class="btn btn-primary" id="start">CLICK ME TO EARN!</button> </p>
+              {{-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> --}}
+            </blockquote>
+          </div>
+        </div>
         <div class="card" id="task" style=" background: transparent; backdrop-filter: blur(3px)">
           {{-- <div class="card-header">
             
@@ -376,18 +394,48 @@ background-position: center center;">
               </div>
               <div class="card-body">
                 <div class="row"> 
-                  <div class="col-md-3">
-                    Sample Coupon
+                  <div class="col-md-12">
+                   <img class="img-fluid" style="height: 300px; width: 100%; background-size:     cover;                      
+                   background-repeat:   no-repeat;
+                   background-position: center center;" src="../coupons/1.jpg" alt="">
+                   <button class="btn btn-success btn-sm mt-2 mb-2">Claim</button>
                   </div>
-                  <div class="col-md-3">
-                    Sample Coupon
-                  </div>
-                  <div class="col-md-3">
-                    Sample Coupon
-                  </div>
-                  <div class="col-md-3">
-                    Sample Coupon
-                  </div>
+                  <div class="col-md-12">
+                    <img class="img-fluid" style="height: 300px; width: 100%; background-size:     cover;                      
+                    background-repeat:   no-repeat;
+                    background-position: center center;" src="../coupons/2.jpg" alt="">
+                    <button class="btn btn-success btn-sm mt-2 mb-2">Claim</button>
+                   </div>
+                   <div class="col-md-12">
+                    <img class="img-fluid" style="height: 300px; width: 100%; background-size:     cover;                      
+                    background-repeat:   no-repeat;
+                    background-position: center center;" src="../coupons/3.jpg" alt="">
+                    <button class="btn btn-success btn-sm mt-2 mb-2">Claim</button>
+                   </div>
+                   <div class="col-md-12">
+                    <img class="img-fluid" style="height: 300px; width: 100%; background-size:     cover;                      
+                    background-repeat:   no-repeat;
+                    background-position: center center;" src="../coupons/4.jpg" alt="">
+                    <button class="btn btn-success btn-sm mt-2 mb-2">Claim</button>
+                   </div>
+                   <div class="col-md-12">
+                    <img class="img-fluid" style="height: 300px; width: 100%; background-size:     cover;                      
+                    background-repeat:   no-repeat;
+                    background-position: center center;" src="../coupons/5.jpg" alt="">
+                    <button class="btn btn-success btn-sm mt-2 mb-2">Claim</button>
+                   </div>
+                   <div class="col-md-12">
+                     <img class="img-fluid" style="height: 300px; width: 100%; background-size:     cover;                      
+                     background-repeat:   no-repeat;
+                     background-position: center center;" src="../coupons/6.jpg" alt="">
+                     <button class="btn btn-success btn-sm mt-2 mb-2">Claim</button>
+                    </div>
+                    <div class="col-md-12">
+                     <img class="img-fluid" style="height: 300px; width: 100%; background-size:     cover;                      
+                     background-repeat:   no-repeat;
+                     background-position: center center;" src="../coupons/7.jpg" alt="">
+                     <button class="btn btn-success btn-sm mt-2 mb-2">Claim</button>
+                    </div>
                 </div>
               </div>
             </div>
@@ -422,8 +470,8 @@ background-position: center center;">
           </div>
           <div class="col-sm-12">
             <div class="card" style="background: transparent; backdrop-filter: blur(3px); color: white;">
-              <div class="card-header">
-                <h3 class="card-title">Future Partners</h3>
+              <div class="card-header" style="text-align: center;">
+                <h3 style="font-weight: bold;">Future Partners</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -632,7 +680,12 @@ background-position: center center;">
   <script>
     $(document).ready(function(){
       $("#ds").css({ 'overflow: hidden' : '', 'text-overflow' : '' });
-      getVideo(1);
+
+      $( "#start" ).on( "click", function() {
+          getVideo(1);
+          $("#qoute").css('display', "none")
+      } );
+      
 
         function getVideo(task_id)
         {
@@ -659,7 +712,7 @@ background-position: center center;">
                                       option += response.task.task_name 
                                       option += "</div>"
                                       option += "<div class='card-body'>"
-                                      option += "<video height='400px' width='100%'' controls autoplay id='myVideo'>"
+                                      option += "<video width='100%' style='pointer-events: none;' controls autoplay id='myVideo'>"
                                       option += " <source src='../videos/"+ response.task.url +"' type='video/mp4'></source>"
                                       option += "</video>" 
                                       option += "</div>"  
@@ -671,11 +724,11 @@ background-position: center center;">
                                       {
                                         if(x == batch)
                                         {
-                                            option += "<button style='background-color: #FFD700; color: black' class='btn btn-primary mr-3 mb-3'>Click " + x + "</button>"
+                                            option += "<button style='background-color: #FFD700; color: black' class='btn btn-primary mr-3 mb-3'>Set " + x + "</button>"
                                         }
                                         else
                                         {
-                                            option += "<button disabled class='btn btn-primary mr-3 mb-3'>Click " + x + "</button>"
+                                            option += "<button disabled class='btn btn-primary mr-3 mb-3'>Set " + x + "</button>"
                                         }
                                       }
                                       
@@ -705,11 +758,10 @@ background-position: center center;">
                                                   {
                                                     var claim = document.getElementById('claim');
                                                     claim.style.removeProperty("display");
-                                                    // $('#batch').empty();
-                                                    // $('#batch').val(response.batch + 1);
+                                                    
                                                     claimIncome(response.batch)
                                                   } else {
-                                                    // $('#batch').val(response.batch);
+                                                   
                                                     x.muted = true
                                                     x.play()
                                                     getVideo(1);
@@ -753,6 +805,7 @@ background-position: center center;">
                                                     if(response.success){
                                                       RewardsWallet();
                                                       unilevel();
+                                                      getVideo(1);
                                                       
                                                     }
                                                   }
@@ -761,6 +814,7 @@ background-position: center center;">
         }
         RewardsWallet()
         phxToken()
+        unilevel();
         function RewardsWallet()
         {
           $.ajax({
@@ -794,7 +848,7 @@ background-position: center center;">
                       console.log(response);
                        var len = 0;
                        if(response.success){
-                        getVideo(1);
+                        
                           
                         }
                      }

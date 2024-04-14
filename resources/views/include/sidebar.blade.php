@@ -116,7 +116,7 @@
                 <a href="/member/market" class="nav-link">
                     <i class="nav-icon fas fa-shopping-cart"></i>
                     <p>
-                      Market
+                     E-Market
                     </p>
                   </a>
                 </li>
@@ -211,7 +211,11 @@
               
         </ul>
       </nav>
+      <div style="position: fixed; bottom: 0; margin-left: 30px;">
+        <a href="#" style="color: white;">Customer Service</a>
+      </div>
       <!-- /.sidebar-menu -->
     </div>
+    
     <!-- /.sidebar -->
   </aside>

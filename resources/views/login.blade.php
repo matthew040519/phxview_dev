@@ -78,7 +78,7 @@ background-position: center center;">
         <div class="row">
           <div class="col-md-6">
             <div class="input-group mb-3">
-              <input type="text" value="{{ $code }}" readonly class="form-control" name="code" placeholder="Password">
+              <input type="text" value="{{ $code }}" readonly class="form-control" name="code" placeholder="Code">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fa fa-shield"></span>
@@ -88,7 +88,7 @@ background-position: center center;">
           </div>
           <div class="col-md-6">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" name="user_code" placeholder="Password">
+              <input type="text" class="form-control" name="user_code" placeholder="Code">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fa fa-shield"></span>

@@ -482,6 +482,12 @@ background-position: center center;">
                   <div class="col-md-2 mb-3">
                     <img class="img-fluid" style="height: 200px;" src="../rraf.gif" alt="">
                   </div>
+                  <div class="col-md-2 mb-3">
+                    <img class="img-fluid" style="height: 100%;" src="../alunsina.jpg" alt="">
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <img class="img-fluid" style="height: 200px;" src="../health.jpg" alt="">
+                  </div>
                 </div>
               </div>
               <!-- /.card-body -->

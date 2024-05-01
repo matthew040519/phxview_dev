@@ -64,12 +64,17 @@ background-position: center center; color: white;">
                                   </div>
                               @endif
                                 <h5 style="font-weight: bold; font-size: 32px;">{{ $package->package_name }}</h5>
-                              
-                                <p style="font-size: 24px;">{{ $package->click }} clicks / 37 videos <br> <p style="font-size: 24px;">{{ ($package->dc_token * $package->click) * 150 }} DC TOKEN / 150 days<br><p style="font-size: 24px;">{{ $package->dr }} % Direct Referall POINTS
-                                  <br><p style="font-size: 24px;">{{ $package->dc_token }} Per Click <br>
+                                <ul style="font-size: 16px;">
+                                  <li>{{ $package->click }} clicks / 37 videos</li>
+                                  <li>{{ ($package->dc_token * $package->click) * 150 }} DC TOKEN / 150 days</li>
+                                  <li>{{ $package->dc_token }} Per Click</li>
                                   @if($params['member_package']->package_id == $package->id)
-                                  <label for="" style="font-size: 24px;">Days left: {{ $params['member_package']->date_expire  }}</label>
+                                  <li>Days left: {{ $params['member_package']->date_expire  }}</li>
                                 @endif
+                                </ul>
+                              
+                               
+                                 
                               </div>
                             <div class="card-footer" >
                                 {{-- <button class="btn btn-primary btn-block">Select</button> --}}

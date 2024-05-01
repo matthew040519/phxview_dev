@@ -83,7 +83,7 @@ background-position: center center;">
           
           <div class="card-body">
             <blockquote>
-              <p>Please Select Package First</p>
+              <p>Please Update your Profile and Package First</p>
               {{-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> --}}
             </blockquote>
           </div>
@@ -482,6 +482,12 @@ background-position: center center;">
                   <div class="col-md-2 mb-3">
                     <img class="img-fluid" style="height: 200px;" src="../rraf.gif" alt="">
                   </div>
+                  <div class="col-md-2 mb-3">
+                    <img class="img-fluid" style="height: 100%;" src="../alunsina.jpg" alt="">
+                  </div>
+                  <div class="col-md-2 mb-3">
+                    <img class="img-fluid" style="height: 200px;" src="../health.jpg" alt="">
+                  </div>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -550,7 +556,7 @@ background-position: center center;">
               <div class="row">
                   <div class="col-md-12">
                       <label for="">Convertion of Rewards Wallet to PHX Token</label>
-                      <input type="text" readonly name="conversion" value="15:1" class="form-control">
+                      <input type="text" readonly name="conversion" value="20:1" class="form-control">
                   </div>
                   <div class="col-md-12">
                     <label for="">Remaining Balance</label>

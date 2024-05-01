@@ -21,7 +21,7 @@ class ConversionController extends Controller
         {
             // if($request->convert % 15 == 0)
             // {
-                $phxToken = $request->convert / 15;
+                $phxToken = $request->convert / 20;
 
                 conversion::create([
                     'member_id' => Auth::user()->id,
@@ -56,11 +56,11 @@ class ConversionController extends Controller
             // {
                 // if($request->convert_to == 1)
                 // {
-                    $azntToken = ($request->convert * 0.5) / 10;
+                    $azntToken = ($request->convert) / 10;
 
                     conversion::create([
                         'member_id' => Auth::user()->id,
-                        'withdraw' => ($request->convert / 2),
+                        'withdraw' => $request->convert,
                         'conversion' => $azntToken, 
                         'type' => 'AZNT TOKEN'
                     ]);
@@ -68,8 +68,8 @@ class ConversionController extends Controller
                 // else {
                     conversion::create([
                         'member_id' => Auth::user()->id,
-                        'withdraw' => ($request->convert / 2),
-                        'conversion' => ($request->convert * 0.5), 
+                        'withdraw' => $request->convert,
+                        'conversion' => ($request->convert / 2), 
                         'type' => 'E-Wallet'
                     ]);
                 // }

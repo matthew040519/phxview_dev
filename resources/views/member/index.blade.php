@@ -83,7 +83,7 @@ background-position: center center;">
           
           <div class="card-body">
             <blockquote>
-              <p>Please Select Package First</p>
+              <p>Please Update your Profile and Package First</p>
               {{-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> --}}
             </blockquote>
           </div>
@@ -556,7 +556,7 @@ background-position: center center;">
               <div class="row">
                   <div class="col-md-12">
                       <label for="">Convertion of Rewards Wallet to PHX Token</label>
-                      <input type="text" readonly name="conversion" value="15:1" class="form-control">
+                      <input type="text" readonly name="conversion" value="20:1" class="form-control">
                   </div>
                   <div class="col-md-12">
                     <label for="">Remaining Balance</label>

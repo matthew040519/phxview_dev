@@ -244,12 +244,19 @@ class DashboardController extends Controller
 
         $tdate = Carbon::now()->timezone('Asia/Manila')->format('Y-m-d');
         
-        memberincome::create([
+        conversion::create([
             'member_id' => Auth::user()->id,
-            'batch' =>  1, 
-            'tdate' =>  $tdate,
-            'income' => $request->convert,
-            'type' => 1
+            'withdraw' => $request->convert,
+            'conversion' => $request->convert / 2, 
+            'type' => 'AZNT TOKEN'
+        ]);
+    // }
+    // else {
+        conversion::create([
+            'member_id' => Auth::user()->id,
+            'withdraw' => $request->convert,
+            'conversion' => ($request->convert / 2), 
+            'type' => 'E-Wallet'
         ]);
 
         directinvite::create([
@@ -283,12 +290,19 @@ class DashboardController extends Controller
             'amount' => -$request->convert
         ]);
 
-        memberincome::create([
+        conversion::create([
             'member_id' => Auth::user()->id,
-            'batch' =>  1, 
-            'tdate' =>  $tdate,
-            'income' => $request->convert,
-            'type' => 1
+            'withdraw' => $request->convert,
+            'conversion' => $request->convert / 2, 
+            'type' => 'AZNT TOKEN'
+        ]);
+    // }
+    // else {
+        conversion::create([
+            'member_id' => Auth::user()->id,
+            'withdraw' => $request->convert,
+            'conversion' => ($request->convert / 2), 
+            'type' => 'E-Wallet'
         ]);
 
         return redirect()->back()->with('status', 'Transfer Successfully')->with('color', 'success');

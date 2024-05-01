@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\member;
 use App\Models\tree;
-use App\Models\directinvite;
 use App\Models\member_package;
 use App\Models\Province;
 use Illuminate\Support\Facades\Validator;
@@ -235,7 +234,7 @@ class LoginController extends Controller
             tree::where('upline', $request->upline)->update(['complete' => 1]);
         }
         
-        return redirect()->back()->with('status', 'Member Add Successfully')->with('color', 'success');
+        return redirect()->intended('admin/dashboard')->with('status', 'Member Add Successfully')->with('color', 'success');
 
     }
 }

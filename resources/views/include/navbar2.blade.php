@@ -75,7 +75,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="fas fa-wallet" style="color: white;"></i>
-            <label style="color: white;">&#8369; {{ $params['convert']; }}</label>
+            <label style="color: white;">&#8369; {{ $params['convert'] }}</label>
             {{-- <span class="badge badge-danger navbar-badge"> &#8369; 150</span> --}}
           </a>
           {{-- <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

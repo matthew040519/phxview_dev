@@ -62,6 +62,8 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/insertTask',[DashboardController::class, 'insertMemberTask']);
             Route::get('/memberIncome',[DashboardController::class, 'memberIncome']);
             Route::get('/rewardsWallet',[DashboardController::class, 'RewardsWallet']);
+            Route::get('/updateClaim',[DashboardController::class, 'updateClaim']);
+            Route::get('/claimRewards',[DashboardController::class, 'claimRewards']);
             Route::get('/getPHXToken',[DashboardController::class, 'Token']);
             Route::get('/packages',[PackageController::class, 'package']);
             Route::post('/conversion',[ConversionController::class, 'conversion'])->name('conversion');

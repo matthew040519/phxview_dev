@@ -70,6 +70,11 @@ background-position: center center;">
             </blockquote>
           </div>
         </div>
+        <div class="card" id="claimall" style="display: none; background: transparent; backdrop-filter: blur(3px)">
+          <div class="card-body">
+              <button id="claimbutton" class="btn btn-success">Claim Rewards</button>
+          </div>
+        </div>
         <div class="card" id="task" style=" background: transparent; backdrop-filter: blur(3px)">
           {{-- <div class="card-header">
             
@@ -692,6 +697,22 @@ background-position: center center;">
           $("#qoute").css('display', "none")
       } );
       
+      $( "#claimbutton" ).on( "click", function() {
+        $.ajax({
+                     url: '/member/claimRewards',
+                     type: 'get',
+                     dataType: 'json',
+                     success: function(response){
+                        if(response.success)
+                        {
+                          $("#claimall").css('display', "none")
+                          RewardsWallet()
+                          getVideo(1)
+                        }
+                     }
+                    });
+      } );
+      
 
         function getVideo(task_id)
         {
@@ -762,8 +783,8 @@ background-position: center center;">
                                                 if(response.success){
                                                   if(response.count == 3)
                                                   {
-                                                    var claim = document.getElementById('claim');
-                                                    claim.style.removeProperty("display");
+                                                    // var claim = document.getElementById('claim');
+                                                    // claim.style.removeProperty("display");
                                                     
                                                     claimIncome(response.batch)
                                                   } else {
@@ -783,13 +804,30 @@ background-position: center center;">
 
                         } else 
                         {
-                          var option = "";
+
+                          $.ajax({
+                              url: '/member/updateClaim',
+                              type: 'get',
+                              dataType: 'json',
+                              success: function(response){
+                                $('#task').empty();
+                                if(response.isExist){
+                                  console.log(response)
+                                  var claim = document.getElementById('claimall');
+                                  claim.style.removeProperty("display");
+                                }
+                                else{
+                                  var option = "";
                                       option += "<div class='card-body'>"
-                                      option += "<h1>No Task Available..</h1>"
+                                      option += "<h1 style='color: white'>No Task Available..</h1>"
                                       option += "</div>"  
 
 
                                       $("#task").append(option);  
+                                }
+                              }});
+
+                          
                         }
                      }
                    });
@@ -797,7 +835,7 @@ background-position: center center;">
 
         function claimIncome(batch)
         {
-              $( "#claim" ).on( "click", function() {
+              // $( "#claim" ).on( "click", function() {
               console.log('click')
               // var batch = $('#batch').val();
                                     $.ajax({
@@ -816,7 +854,7 @@ background-position: center center;">
                                                     }
                                                   }
                                                 });
-            } );
+            // } );
         }
         RewardsWallet()
         phxToken()

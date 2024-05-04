@@ -186,7 +186,7 @@ class DashboardController extends Controller
 
     public function RewardsWallet()
     {
-        $memberincomes = memberincome::select('income')->where('member_id', Auth::user()->id)->sum('income');
+        $memberincomes = memberincome::select('income')->where(['member_id' => Auth::user()->id, 'claim' => 1])->sum('income');
 
         $conversion = conversion::select('withdraw')->where(['member_id' => Auth::user()->id, 'type' => 'PHX TOKEN'])->sum('withdraw');
 
@@ -219,6 +219,33 @@ class DashboardController extends Controller
             'withdrawal' => floatval($withdrawal_bal),
             'sponsor' => floatval($sponsor),
             'unilevel' => floatval($unilevel),
+        ], 200);
+    }
+
+    public function updateClaim()
+    {
+        $claim = memberincome::where(['member_id' => Auth::user()->id, 'claim' => 0])->exists();
+
+        return response()->json([
+            'success' => true,
+            'isExist' => $claim
+        ], 200);
+    }
+
+    public function claimRewards()
+    {
+        $claim = memberincome::where(['member_id' => Auth::user()->id, 'claim' => 0])->exists();
+
+        if($claim){
+            memberincome::where(['member_id' => Auth::user()->id, 'claim' => 0])->update(['claim' => 1]);
+
+            return response()->json([
+                'success' => true,
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false,
         ], 200);
     }
 

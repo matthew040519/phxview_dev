@@ -51,7 +51,7 @@ return [
             // 'database' => env('DB_DATABASE', 'phxvqyfh_dev_phxview_db'),
             // 'username' => env('DB_USERNAME', 'phxvqyfh_phxview'),
             // 'password' => env('DB_PASSWORD', 'phxview2024'),
-            'database' => 'phxvqyfh_dev_phxview_db',
+            'database' => 'phxvqyfh_phxview_db',
             'username' => 'phxvqyfh_phxview',
             'password' => 'phxview2024',
             'unix_socket' => env('DB_SOCKET', ''),

@@ -58,7 +58,7 @@ background-position: center center;">
     
     <section class="content">
       <div class="sticky">
-        <img src="../banner2.png" id="banner" class="img-thumbnail" alt="">
+        <img src="../banner2.png" id="banner" class="img-thumbnail" style="width: 100%;" alt="">
       </div>
       <div class="container-fluid"> 
         

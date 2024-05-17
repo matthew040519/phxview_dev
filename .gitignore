@@ -5,7 +5,8 @@
 /public/storage
 /public/videos
 /storage/*.key
-/config
+/public/videos
+/config/database.php
 /vendor
 .env
 .env.backup

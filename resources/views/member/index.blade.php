@@ -772,34 +772,40 @@ background-position: center center;">
 
                                       x.onended = function() {
 
-                                        $.ajax({
-                                              url: '/member/insertTask?id=' + response.task.id,
-                                              type: 'get',
-                                              dataType: 'json',
-                                              success: function(response){
-                                                // $('#task').empty();
-                                                console.log(response);
-                                                var len = 0;
-                                                if(response.success){
-                                                  if(response.count == 3)
-                                                  {
-                                                    // var claim = document.getElementById('claim');
-                                                    // claim.style.removeProperty("display");
+                                        blockTime();
+
+                                        var y = document.getElementById("myVideo1");
+
+                                        y.onended = function()
+                                        {
+                                            $.ajax({
+                                                url: '/member/insertTask?id=' + response.task.id,
+                                                type: 'get',
+                                                dataType: 'json',
+                                                success: function(response){
+                                                  // $('#task').empty();
+                                                  console.log(response);
+                                                  var len = 0;
+                                                  if(response.success){
+                                                    if(response.count == 3)
+                                                    {
+                                                      // var claim = document.getElementById('claim');
+                                                      // claim.style.removeProperty("display");
+                                                      
+                                                      claimIncome(response.batch)
+                                                    } else {
                                                     
-                                                    claimIncome(response.batch)
-                                                  } else {
-                                                   
-                                                    x.muted = true
-                                                    x.play()
-                                                    getVideo(1);
+                                                      x.muted = true
+                                                      x.play()
+                                                      getVideo(1);
+                                                      
+                                                    }
                                                     
                                                   }
-                                                  
                                                 }
-                                              }
-                                            });
-
-                                          
+                                              });
+                                        }
+                                        
                                       };
 
                         } else 
@@ -831,6 +837,32 @@ background-position: center center;">
                         }
                      }
                    });
+        }
+
+        function blockTime()
+        {
+            $('#task').empty();
+
+            var option = "";
+                                      option += "<div class='card-header' style='text-align: center; font-weight: bold; color: white;'>"
+                                      option += "Block Time" 
+                                      option += "</div>"
+                                      option += "<div class='card-body'>"
+                                      option += "<video width='100%' style='pointer-events: none; height: 500px; width: 100%;' controls autoplay id='myVideo1'>"
+                                      option += " <source src='../videos/phxview.mp4' type='video/mp4'></source>"
+                                      option += "</video>" 
+                                      option += "</div>"  
+                                      option += "<div class='card-body'>"
+                                      option += "<button class='btn btn-primary' id='claim' style='display: none'>Claim</button>"
+                                      option += "</div>"  
+                                      option += "<div class='card-footer'>"
+                                    
+                                      option += "</div>"  
+
+
+                                      $("#task").append(option);
+
+                                      
         }
 
         function claimIncome(batch)

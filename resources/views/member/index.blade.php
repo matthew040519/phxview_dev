@@ -743,7 +743,7 @@ background-position: center center;">
                                       option += response.task.task_name 
                                       option += "</div>"
                                       option += "<div class='card-body'>"
-                                      option += "<video width='100%' style='pointer-events: none;' controls autoplay id='myVideo'>"
+                                      option += "<video width='100%' style='pointer-events: none; height: 500px;' controls autoplay id='myVideo'>"
                                       option += " <source src='../videos/"+ response.task.url +"' type='video/mp4'></source>"
                                       option += "</video>" 
                                       option += "</div>"  

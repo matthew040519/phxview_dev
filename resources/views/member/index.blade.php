@@ -853,7 +853,7 @@ background-position: center center;">
                                       option += "Block Time" 
                                       option += "</div>"
                                       option += "<div class='card-body'>"
-                                      option += "<video width='100%' style='pointer-events: none;' controls autoplay id='myVideo1'>"
+                                      option += "<video width='100%' style='pointer-events: none; height: 500px;' controls autoplay id='myVideo1'>"
                                       option += " <source src='../videos/phxview.mp4' type='video/mp4'></source>"
                                       option += "</video>" 
                                       option += "</div>"  

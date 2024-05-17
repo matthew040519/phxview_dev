@@ -12,6 +12,7 @@
     #banner{
       object-fit: cover;
       width: 100%;
+      height: 100px;
     }
     #carousel-img{
       object-fit: cover;
@@ -26,6 +27,9 @@
     z-index: 1; */
   }
   #myVideo{
+    height: auto;
+  }
+  #myVideo1{
     height: auto;
   }
 </style>
@@ -54,7 +58,7 @@ background-position: center center;">
     
     <section class="content">
       <div class="sticky">
-        <img src="../banner2.png" id="banner" class="img-thumbnail" style="width: 100%; text-align: center; " alt="">
+        <img src="../banner2.png" id="banner" class="img-thumbnail" alt="">
       </div>
       <div class="container-fluid"> 
         
@@ -849,7 +853,7 @@ background-position: center center;">
                                       option += "Block Time" 
                                       option += "</div>"
                                       option += "<div class='card-body'>"
-                                      option += "<video width='100%' style='pointer-events: none; height: 500px; width: 100%;' controls autoplay id='myVideo1'>"
+                                      option += "<video width='100%' style='pointer-events: none;' controls autoplay id='myVideo1'>"
                                       option += " <source src='../videos/phxview.mp4' type='video/mp4'></source>"
                                       option += "</video>" 
                                       option += "</div>"  

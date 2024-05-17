@@ -2,7 +2,7 @@ name: Deploy PHP Project on push
 on:
   push:
     branches:
-      - master
+      - test
 jobs:
   web-deploy:
     name: Deploy
@@ -24,7 +24,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           server: ftp.phxview.online
-          username: prod@phxview.online
+          username: dev@dev.phxview.online
           password: phxview2024
           server-dir: /
           protocol: ftp

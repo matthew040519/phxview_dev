@@ -774,6 +774,7 @@ background-position: center center;">
 
                                         blockTime();
 
+                                        
                                         var y = document.getElementById("myVideo1");
 
                                         y.onended = function()

@@ -2,7 +2,7 @@ name: Deploy PHP Project on push
 on:
   push:
     branches:
-      - master
+      - test
 jobs:
   web-deploy:
     name: Deploy

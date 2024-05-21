@@ -776,13 +776,10 @@ background-position: center center;">
 
                                       x.onended = function() {
 
-                                        blockTime();
+                                        // blockTime();
 
                                         
-                                        var y = document.getElementById("myVideo1");
-
-                                        y.onended = function()
-                                        {
+                                        
                                             $.ajax({
                                                 url: '/member/insertTask?id=' + response.task.id,
                                                 type: 'get',
@@ -796,8 +793,15 @@ background-position: center center;">
                                                     {
                                                       // var claim = document.getElementById('claim');
                                                       // claim.style.removeProperty("display");
+                                                      blockTime();
+
+                                                      var y = document.getElementById("myVideo1");
+
+                                                      y.onended = function()
+                                                      {
+                                                          claimIncome(response.batch)
+                                                      }
                                                       
-                                                      claimIncome(response.batch)
                                                     } else {
                                                     
                                                       x.muted = true
@@ -809,7 +813,6 @@ background-position: center center;">
                                                   }
                                                 }
                                               });
-                                        }
                                         
                                       };
 

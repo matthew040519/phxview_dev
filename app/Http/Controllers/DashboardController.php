@@ -273,15 +273,14 @@ class DashboardController extends Controller
         
         conversion::create([
             'member_id' => Auth::user()->id,
-            'withdraw' => $request->convert,
+            'withdraw' => 0,
             'conversion' => $request->convert / 2, 
-            'type' => 'AZNT TOKEN'
+            'type' => 'PHX TOKEN'
         ]);
-    // }
-    // else {
+
         conversion::create([
             'member_id' => Auth::user()->id,
-            'withdraw' => $request->convert,
+            'withdraw' => 0,
             'conversion' => ($request->convert / 2), 
             'type' => 'E-Wallet'
         ]);

@@ -24,10 +24,12 @@ background-position: center center; color: white;">
 
     <!-- Main content -->
     <section class="content">
-        <div class="error-page">
+      <img src="../images/games.jpg" class="img-fluid" alt="">
+        {{-- <div class="error-page">
           <h2 class="headline text-warning"> Coming Soon!</h2>
   
-          <div class="error-content">
+          <div class="error-content"> --}}
+            
             {{-- <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</h3> --}}
   
             {{-- <p>
@@ -45,9 +47,9 @@ background-position: center center; color: white;">
                 </div>
               </div>
             </form> --}}
-          </div>
+          {{-- </div> --}}
           <!-- /.error-content -->
-        </div>
+        {{-- </div> --}}
         <!-- /.error-page -->
       </section>
   </div>

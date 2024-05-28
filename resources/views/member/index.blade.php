@@ -480,7 +480,7 @@ background-position: center center;">
           <div class="col-sm-12">
             <div class="card" style="background: transparent; backdrop-filter: blur(3px); color: white;">
               <div class="card-header" style="text-align: center;">
-                <h3 style="font-weight: bold;">Future Partners</h3>
+                <h3 style="font-weight: bold;">Featured Partners</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

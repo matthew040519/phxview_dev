@@ -8,6 +8,8 @@
 /public/videos
 /config
 /vendor
+/.github
+/config/database.php
 .env
 .env.backup
 .env.production

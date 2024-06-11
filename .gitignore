@@ -11,6 +11,7 @@
 /.github
 /config/database.php
 .env
+.env.*.php
 .env.backup
 .env.production
 .phpunit.result.cache

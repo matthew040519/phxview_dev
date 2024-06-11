@@ -253,10 +253,10 @@ background-position: center center;">
           <div class="col-12 col-sm-6 col-md-3">
            
             <div class="info-box" style="height: 180px; border: 1px solid white; background: transparent; backdrop-filter: blur(10px); color: white;">
-              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-users"></i></span>
+              <span class="info-box-icon elevation-1" style="width: 120px" ><i class="fas fa-3x fa-coins"></i></span>
 
               <div class="info-box-content">
-                <p class="info-box-text">Downlines</p>
+                <p class="info-box-text">Diamond KC Token</p>
                 <h3 class="info-box-number" >
                   0
                 </h3>

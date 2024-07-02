@@ -81,6 +81,7 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
             Route::get('/unilevel-report',[ReportController::class, 'unilevelreports']);
             Route::get('/unilevel',[ReportController::class, 'unilevel']);
             Route::get('/games',[DashboardController::class, 'games']);
+            Route::get('/eloading',[DashboardController::class, 'eloading']);
             Route::post('/ds-to-dc',[DashboardController::class, 'ds_to_dc'])->name('ds_to_dc');
             Route::post('/unilevel-to-dc',[DashboardController::class, 'unilevel_to_dc'])->name('unilevel_to_dc');
             Route::get('/direct-sponsor-report',[ReportController::class, 'directSponsor']);

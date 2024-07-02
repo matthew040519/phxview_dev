@@ -128,6 +128,14 @@
                       </p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/member/eloading" class="nav-link">
+                        <i class="nav-icon fa fa-sim-card"></i>
+                        <p>
+                          E-Loading
+                        </p>
+                      </a>
+                    </li>
               <li class="nav-item">
                 <a href="/member/profile" class="nav-link">
                   <i class="nav-icon fas fa-user"></i>

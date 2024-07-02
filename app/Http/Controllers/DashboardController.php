@@ -254,6 +254,11 @@ class DashboardController extends Controller
         return view('member.games');
     }
 
+    public function eloading()
+    {
+        return view('member.eloading');
+    }
+
     public function ds_to_dc(Request $request)
     {
         $validated = $request->validate([

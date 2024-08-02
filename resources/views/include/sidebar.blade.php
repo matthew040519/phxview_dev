@@ -112,6 +112,15 @@
                   </p>
                 </a>
               </li>
+              
+                <li class="nav-item">
+                  <a href="/member/adsrewards" class="nav-link">
+                      <i class="nav-icon fas fa-award"></i>
+                      <p>
+                       Ads Rewards
+                      </p>
+                    </a>
+                  </li>
               <li class="nav-item">
                 <a href="/member/market" class="nav-link">
                     <i class="nav-icon fas fa-shopping-cart"></i>
@@ -128,6 +137,22 @@
                       </p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/member/watch-box" class="nav-link">
+                        <i class="nav-icon fas fa-film"></i>
+                        <p>
+                         Watch Box
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/member/chat-box" class="nav-link">
+                          <i class="nav-icon fas fa-comments"></i>
+                          <p>
+                           Chat Box
+                          </p>
+                        </a>
+                      </li>
                   <li class="nav-item">
                     <a href="/member/eloading" class="nav-link">
                         <i class="nav-icon fa fa-sim-card"></i>

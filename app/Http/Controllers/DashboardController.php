@@ -254,6 +254,11 @@ class DashboardController extends Controller
         return view('member.games');
     }
 
+    public function adsrewards()
+    {
+        return view('member.underconstruction');
+    }
+
     public function eloading()
     {
         return view('member.eloading');
